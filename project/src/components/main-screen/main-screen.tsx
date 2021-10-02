@@ -3,9 +3,12 @@ import FilmCardScreen from '../film-card/small-film-card';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 type MainScreenProps = {
   cardsCount: number;
+  promoTitle: string;
+  promoGenre: string;
+  promoReleaseYear: number;
 }
 
-export default function MainScreen({cardsCount}: MainScreenProps):  JSX.Element {
+export default function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: MainScreenProps):  JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -43,10 +46,10 @@ export default function MainScreen({cardsCount}: MainScreenProps):  JSX.Element 
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{promoTitle}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{promoGenre}</span>
+                <span className="film-card__year">{promoReleaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
