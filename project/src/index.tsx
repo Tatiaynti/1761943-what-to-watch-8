@@ -7,7 +7,7 @@ const Settings = {
   PROMO_TITLE: 'The Grand Budapest',
   PROMO_GENRE: 'Drama',
   PROMO_RELEASE_YEAR: 2014,
-};
+} as const;
 
 ReactDOM.render(
   <React.StrictMode>
