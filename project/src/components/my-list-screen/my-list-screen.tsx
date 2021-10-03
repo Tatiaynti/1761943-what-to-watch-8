@@ -1,4 +1,4 @@
-export default function MyListScreen(): JSX.Element {
+function MyListScreen(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -129,3 +129,5 @@ export default function MyListScreen(): JSX.Element {
     </div>
   );
 }
+
+export default MyListScreen;

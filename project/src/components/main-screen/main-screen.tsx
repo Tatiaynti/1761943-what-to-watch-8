@@ -7,7 +7,7 @@ type MainScreenProps = {
   promoReleaseYear: number;
 }
 
-export default function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: MainScreenProps):  JSX.Element {
+function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: MainScreenProps):  JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -133,3 +133,5 @@ export default function MainScreen({cardsCount, promoTitle, promoGenre, promoRel
     </>
   );
 }
+
+export default MainScreen;

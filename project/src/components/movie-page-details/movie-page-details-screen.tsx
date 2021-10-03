@@ -1,4 +1,4 @@
-export default function MoviePageDetailsScreen(): JSX.Element {
+function MoviePageDetailsScreen(): JSX.Element {
   return (
     <>
       <section className="film-card film-card--full">
@@ -182,3 +182,5 @@ export default function MoviePageDetailsScreen(): JSX.Element {
     </>
   );
 }
+
+export default MoviePageDetailsScreen;

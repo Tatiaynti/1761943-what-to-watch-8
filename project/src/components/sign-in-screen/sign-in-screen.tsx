@@ -1,4 +1,4 @@
-export default function SignInScreen(): JSX.Element {
+function SignInScreen(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -47,3 +47,5 @@ export default function SignInScreen(): JSX.Element {
     </div>
   );
 }
+
+export default SignInScreen;

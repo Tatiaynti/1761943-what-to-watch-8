@@ -1,4 +1,4 @@
-export default function FilmCardScreen(): JSX.Element {
+function FilmCardScreen(): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -10,3 +10,5 @@ export default function FilmCardScreen(): JSX.Element {
     </article>
   );
 }
+
+export default FilmCardScreen;

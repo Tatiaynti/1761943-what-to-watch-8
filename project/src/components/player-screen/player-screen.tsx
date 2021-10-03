@@ -1,6 +1,6 @@
 const styles = {left: '30%'};
 
-export default function PlayerScreen(): JSX.Element {
+function PlayerScreen(): JSX.Element {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -36,3 +36,5 @@ export default function PlayerScreen(): JSX.Element {
     </div>
   );
 }
+
+export default PlayerScreen;
