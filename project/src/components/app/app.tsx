@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
+import {Fragment} from 'react';
 import {Switch, Route, BrowserRouter, Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
 import MoviePageDetailsScreen from '../movie-page-details/movie-page-details-screen';
@@ -9,6 +9,7 @@ import MoviePageScreen from '../movie-page/movie-page-screen';
 import MyListScreen from '../my-list-screen/my-list-screen';
 import PlayerScreen from '../player-screen/player-screen';
 import SignInScreen from '../sign-in-screen/sign-in-screen';
+import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
   cardsCount: number;
@@ -41,12 +42,20 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear}: AppScreenPr
         <Route exact path={AppRoute.FilmReviews}>
           <MoviePageReviewsScreen />
         </Route>
-        <Route exact path={AppRoute.AddReview}>
-          <AddReviewScreen />
-        </Route>
-        <Route exact path={AppRoute.MyList}>
-          <MyListScreen />
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.AddReview}
+          render={() => <AddReviewScreen />}
+          authorizationStatus={AuthorizationStatus.NoAuth}
+        >
+        </PrivateRoute>
+        <PrivateRoute
+          exact
+          path={AppRoute.MyList}
+          render={() => <MyListScreen />}
+          authorizationStatus={AuthorizationStatus.NoAuth}
+        >
+        </PrivateRoute>
         <Route exact path={AppRoute.Player}>
           <PlayerScreen />
         </Route>
