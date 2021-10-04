@@ -1,4 +1,5 @@
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import { Fragment } from 'react';
+import {Switch, Route, BrowserRouter, Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import MainScreen from '../main-screen/main-screen';
 import MoviePageDetailsScreen from '../movie-page-details/movie-page-details-screen';
@@ -45,6 +46,18 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear}: AppScreenPr
         <Route exact path={AppRoute.Player}>
           <PlayerScreen />
         </Route>
+        <Route
+          render={(props) => (
+            <Fragment>
+              <h1>
+                  404.
+                <br />
+                <small>Page not found</small>
+              </h1>
+              <Link to="/">Go to main page</Link>
+            </Fragment>
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );
