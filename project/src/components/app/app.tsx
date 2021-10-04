@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import {Switch, Route, BrowserRouter, Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
 import MoviePageDetailsScreen from '../movie-page-details/movie-page-details-screen';
 import MoviePageReviewsScreen from '../movie-page-reviews/movie-page-reviews-screen';
@@ -39,6 +40,9 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear}: AppScreenPr
         </Route>
         <Route exact path={AppRoute.FilmReviews}>
           <MoviePageReviewsScreen />
+        </Route>
+        <Route exact path={AppRoute.AddReview}>
+          <AddReviewScreen />
         </Route>
         <Route exact path={AppRoute.MyList}>
           <MyListScreen />
