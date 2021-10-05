@@ -1,5 +1,4 @@
-import {Fragment} from 'react';
-import {Switch, Route, BrowserRouter, Link} from 'react-router-dom';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
@@ -10,6 +9,7 @@ import MyListScreen from '../my-list-screen/my-list-screen';
 import PlayerScreen from '../player-screen/player-screen';
 import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
+import PageNotFound from '../page-not-found-screen/page-not-found-screen';
 
 type AppScreenProps = {
   cardsCount: number;
@@ -61,14 +61,7 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear}: AppScreenPr
         </Route>
         <Route
           render={(props) => (
-            <Fragment>
-              <h1>
-                  404.
-                <br />
-                <small>Page not found</small>
-              </h1>
-              <Link to="/">Go to main page</Link>
-            </Fragment>
+            <PageNotFound />
           )}
         />
       </Switch>

@@ -1,4 +1,4 @@
-export enum AppRoute {
+enum AppRoute {
   SignIn = '/login',
   AddReview = '/films/:id/review',
   Film = '/films/:id',
@@ -9,8 +9,10 @@ export enum AppRoute {
   Main = '/'
 }
 
-export enum AuthorizationStatus {
+enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export {AppRoute, AuthorizationStatus};
