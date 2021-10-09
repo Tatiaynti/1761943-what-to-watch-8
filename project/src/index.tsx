@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import {films} from './mocks/films';
 
 const Settings = {
   CARDS_COUNT: 16,
@@ -16,6 +17,7 @@ ReactDOM.render(
       promoTitle = {Settings.PROMO_TITLE}
       promoGenre = {Settings.PROMO_GENRE}
       promoReleaseYear = {Settings.PROMO_RELEASE_YEAR}
+      films = {films}
     />
   </React.StrictMode>,
   document.getElementById('root'));
