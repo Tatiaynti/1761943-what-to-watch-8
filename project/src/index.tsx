@@ -5,7 +5,7 @@ import {films} from './mocks/films';
 import {reviews} from './mocks/reviews';
 
 const Settings = {
-  CARDS_COUNT: 16,
+  CARDS_COUNT: 1,
   PROMO_TITLE: 'The Grand Budapest',
   PROMO_GENRE: 'Drama',
   PROMO_RELEASE_YEAR: 2014,

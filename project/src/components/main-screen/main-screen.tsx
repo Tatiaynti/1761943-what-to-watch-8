@@ -1,3 +1,4 @@
+import {FilmCards} from '../../types/film';
 import Logo from '../logo/logo';
 import FilmCardScreen from '../small-film-card/small-film-card';
 
@@ -6,9 +7,10 @@ type MainScreenProps = {
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
+  films: FilmCards;
 }
 
-function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: MainScreenProps):  JSX.Element {
+function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear, films}: MainScreenProps):  JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -104,9 +106,7 @@ function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: Main
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {new Array(cardsCount).fill(FilmCardScreen).map((filmCard, i) => filmCard(i))}
-          </div>
+          {new Array(cardsCount).fill(FilmCardScreen({films}))}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

@@ -33,6 +33,7 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films, revie
             promoTitle={promoTitle}
             promoGenre={promoGenre}
             promoReleaseYear={promoReleaseYear}
+            films = {films}
           />
         </Route>
         <Route exact path={AppRoute.SignIn}>
