@@ -88,12 +88,12 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Director</strong>
-                    <span className="film-card__details-value">{director}n</span>
+                    <span className="film-card__details-value">{director}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Starring</strong>
                     <span className="film-card__details-value">
-                      {starring.join(', ')}
+                      {starring.join(`, ${  <br/>}`)}
                       {/* Bill Murray, <br></br>
                     Edward Norton, <br></br>
                     Jude Law, <br></br>

@@ -11,6 +11,7 @@ import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
 import PageNotFound from '../page-not-found-screen/page-not-found-screen';
 import {Film, FilmCards} from '../../types/film';
+import {ReviewsList} from '../../types/reviews';
 
 type AppScreenProps = {
   cardsCount: number;
@@ -18,9 +19,10 @@ type AppScreenProps = {
   promoGenre: string;
   promoReleaseYear: number;
   films: FilmCards;
+  reviews: ReviewsList;
 }
 
-function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films}: AppScreenProps): JSX.Element {
+function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScreenProps): JSX.Element {
   const [, secondFilm] = films;
   return (
     <BrowserRouter>
@@ -41,11 +43,13 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films}: AppS
         </Route>
         <Route exact path={AppRoute.FilmDetails}>
           <MoviePageDetailsScreen
-            film = {secondFilm as unknown as Film}
+            film = {secondFilm as Film}
           />
         </Route>
         <Route exact path={AppRoute.FilmReviews}>
-          <MoviePageReviewsScreen />
+          <MoviePageReviewsScreen
+            reviews = {reviews}
+          />
         </Route>
         <PrivateRoute
           exact
