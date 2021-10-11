@@ -53,7 +53,7 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
         <PrivateRoute
           exact
           path={AppRoute.AddReview}
-          render={() => <AddReviewScreen />}
+          render={() => <AddReviewScreen film = {secondFilm as Film} />}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
@@ -69,7 +69,7 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>
-          <PlayerScreen />
+          <PlayerScreen film = {secondFilm as Film} />
         </Route>
         <Route
           render={(props) => (
