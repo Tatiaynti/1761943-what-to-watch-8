@@ -14,7 +14,6 @@ import {Film, FilmCards} from '../../types/film';
 import {ReviewsList} from '../../types/reviews';
 
 type AppScreenProps = {
-  cardsCount: number;
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
@@ -22,14 +21,13 @@ type AppScreenProps = {
   reviews: ReviewsList;
 }
 
-function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScreenProps): JSX.Element {
+function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScreenProps): JSX.Element {
   const [, secondFilm] = films;
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <MainScreen
-            cardsCount={cardsCount}
             promoTitle={promoTitle}
             promoGenre={promoGenre}
             promoReleaseYear={promoReleaseYear}

@@ -4,14 +4,13 @@ import ListOfFilms from '../list-of-films/list-of-films';
 import Logo from '../logo/logo';
 
 type MainScreenProps = {
-  cardsCount: number;
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
   films: FilmCards;
 }
 
-function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear, films}: MainScreenProps):  JSX.Element {
+function MainScreen({promoTitle, promoGenre, promoReleaseYear, films}: MainScreenProps):  JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -108,8 +107,6 @@ function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear, films
           </ul>
 
           <ListOfFilms films={films}/>
-
-          {/* {new Array(cardsCount).fill(FilmCardScreen({films}))} */}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
