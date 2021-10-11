@@ -62,8 +62,13 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films, revie
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyListScreen />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          render={() =>
+            (
+              <MyListScreen
+                cardsCount={cardsCount}
+                films = {films}
+              />)}
+          authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>
