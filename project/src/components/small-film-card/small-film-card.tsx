@@ -12,7 +12,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
       {films.map((film) => {
         const keyValue = `${film.id}`;
         return (
-          <article key={keyValue} className="small-film-card catalog__films-card">
+          <article key={keyValue} className="small-film-card catalog__films-card" id={`film-${film.id}`}>
             <div className="small-film-card__image">
               <img src={film.image} alt="Johnny English" width="280" height="175" />
             </div>

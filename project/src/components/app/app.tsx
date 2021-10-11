@@ -65,7 +65,6 @@ function App({cardsCount, promoTitle, promoGenre, promoReleaseYear, films, revie
           render={() =>
             (
               <MyListScreen
-                cardsCount={cardsCount}
                 films = {films}
               />)}
           authorizationStatus={AuthorizationStatus.Auth}

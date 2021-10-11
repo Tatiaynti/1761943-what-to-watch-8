@@ -1,6 +1,7 @@
 import {FilmCards} from '../../types/film';
+import Footer from '../footer/footer';
+import ListOfFilms from '../list-of-films/list-of-films';
 import Logo from '../logo/logo';
-import FilmCardScreen from '../small-film-card/small-film-card';
 
 type MainScreenProps = {
   cardsCount: number;
@@ -106,22 +107,15 @@ function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear, films
             </li>
           </ul>
 
-          {new Array(cardsCount).fill(FilmCardScreen({films}))}
+          <ListOfFilms films={films}/>
+
+          {/* {new Array(cardsCount).fill(FilmCardScreen({films}))} */}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <Logo />
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );
