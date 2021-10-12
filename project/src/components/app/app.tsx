@@ -55,7 +55,7 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
           exact
           path={AppRoute.AddReview}
           render={() => <AddReviewScreen film = {secondFilm as Film} />}
-          authorizationStatus={AuthorizationStatus.Auth}
+          authorizationStatus={AuthorizationStatus.Auth} // после разработки закрыть для неавторизованных
         >
         </PrivateRoute>
         <PrivateRoute
@@ -66,7 +66,7 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
               <MyListScreen
                 films = {films}
               />)}
-          authorizationStatus={AuthorizationStatus.Auth}
+          authorizationStatus={AuthorizationStatus.Auth} // после разработки закрыть для неавторизованных
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>
