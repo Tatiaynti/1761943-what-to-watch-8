@@ -38,7 +38,7 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
           <SignInScreen/>
         </Route>
         <Route exact path={AppRoute.Film}>
-          <MoviePageScreen />
+          <MoviePageScreen film = {secondFilm as Film} />
         </Route>
         <Route exact path={AppRoute.FilmDetails}>
           <MoviePageDetailsScreen
