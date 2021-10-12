@@ -1,19 +1,22 @@
+import {Film} from '../../types/film';
 import {ReviewsList} from '../../types/reviews';
 import Logo from '../logo/logo';
 
 type MovieReviewsProps = {
   reviews: ReviewsList;
+  film: Film;
 }
 
 function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
-  const {reviews} = props;
+  const {reviews, film} = props;
+  const {image, poster, title, genre, releaseYear} = film;
 
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={image} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -37,10 +40,10 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -65,7 +68,7 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

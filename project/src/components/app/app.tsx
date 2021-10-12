@@ -48,6 +48,7 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
         <Route exact path={AppRoute.FilmReviews}>
           <MoviePageReviewsScreen
             reviews = {reviews}
+            film = {secondFilm as Film}
           />
         </Route>
         <PrivateRoute
