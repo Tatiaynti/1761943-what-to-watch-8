@@ -1,3 +1,5 @@
+import {useHistory} from 'react-router';
+import {AppRoute} from '../../const';
 import {Film} from '../../types/film';
 import Logo from '../logo/logo';
 
@@ -8,6 +10,7 @@ type MovieDetailsScreenProps = {
 function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
   const {film} = props;
   const {poster, image, title, genre, releaseYear, director, runtime, starring} = film;
+  const history = useHistory();
 
   return (
     <>
@@ -45,7 +48,7 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player.replace(':id', film.id))}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -57,7 +60,7 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <a className="btn film-card__button" onClick={() => history.push(AppRoute.AddReview.replace(':id', film.id))}>Add review</a>
               </div>
             </div>
           </div>
@@ -73,13 +76,13 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Overview</a>
+                    <a className="film-nav__link" onClick={() => history.push(AppRoute.Film.replace(':id', film.id))}>Overview</a>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="/" className="film-nav__link">Details</a>
+                    <a className="film-nav__link" onClick={() => history.push(AppRoute.FilmDetails.replace(':id', film.id))}>Details</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Reviews</a>
+                    <a className="film-nav__link" onClick={() => history.push(AppRoute.FilmReviews.replace(':id', film.id))}>Reviews</a>
                   </li>
                 </ul>
               </nav>

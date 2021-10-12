@@ -1,4 +1,6 @@
 import {FilmCards} from '../../types/film';
+import {AppRoute} from '../../const';
+import {useHistory} from 'react-router';
 
 type FilmCardProps = {
   films: FilmCards;
@@ -7,6 +9,7 @@ type FilmCardProps = {
 
 function FilmCardScreen(props: FilmCardProps): JSX.Element {
   const {films, onMouseEnter} = props;
+  const history = useHistory();
 
   return (
     <div className="catalog__films-list">
@@ -18,7 +21,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
               <img src={film.image} alt="Johnny English" width="280" height="175" />
             </div>
             <h3 className="small-film-card__title">
-              <a className="small-film-card__link" href="film-page.html">{film.title}</a>
+              <a className="small-film-card__link" onClick={() => history.push(AppRoute.Film.replace(':id', film.id))}>{film.title}</a>
             </h3>
           </article>
         );
