@@ -1,7 +1,7 @@
 import {nanoid} from '@reduxjs/toolkit';
 import {Film} from '../types/film';
 
-export const films: Film[] = [
+const films: Film[] = [
   {
     id: nanoid(),
     poster: 'img/the-grand-budapest-hotel-poster.jpg',
@@ -114,3 +114,5 @@ export const films: Film[] = [
     starring: ['Jeff Goldblum', 'Ralph Fiennes', 'Jeff Goldblum', 'Ralph Fiennes', 'random 5'],
     runtime: '2h 14m',
   }];
+
+export {films};

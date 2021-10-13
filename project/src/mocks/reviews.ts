@@ -1,7 +1,7 @@
 import {nanoid} from '@reduxjs/toolkit';
-import {ReviewsList} from '../types/reviews';
+import {Review} from '../types/reviews';
 
-export const reviews: ReviewsList = [
+const reviews: Review[] = [
   {
     id: nanoid(),
     rate: 3.9,
@@ -44,3 +44,5 @@ export const reviews: ReviewsList = [
     userName: 'Amanda',
     date: 'December 20, 2016',
   }];
+
+export {reviews};

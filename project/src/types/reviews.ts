@@ -1,4 +1,4 @@
-export type Review = {
+type Review = {
   id: string;
   rate: number;
   text: string;
@@ -6,4 +6,4 @@ export type Review = {
   date: string;
 };
 
-export type ReviewsList = Review[];
+export type {Review};

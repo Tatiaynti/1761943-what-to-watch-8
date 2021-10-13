@@ -11,14 +11,14 @@ import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
 import PageNotFound from '../page-not-found-screen/page-not-found-screen';
 import {Film} from '../../types/film';
-import {ReviewsList} from '../../types/reviews';
+import {Review} from '../../types/reviews';
 
 type AppScreenProps = {
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
   films: Film[];
-  reviews: ReviewsList;
+  reviews: Review[];
 }
 
 function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScreenProps): JSX.Element {

@@ -1,11 +1,11 @@
 import {useHistory} from 'react-router';
 import {AppRoute} from '../../const';
 import {Film} from '../../types/film';
-import {ReviewsList} from '../../types/reviews';
+import {Review} from '../../types/reviews';
 import Logo from '../logo/logo';
 
 type MovieReviewsProps = {
-  reviews: ReviewsList;
+  reviews: Review[];
   film: Film;
 }
 
