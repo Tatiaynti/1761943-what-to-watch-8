@@ -1,9 +1,9 @@
 import FilmCardScreen from '../small-film-card/small-film-card';
-import {FilmCards} from '../../types/film';
 import {useState} from 'react';
+import {Film} from '../../types/film';
 
 type ListOfFilmProps = {
-  films: FilmCards;
+  films: Film[];
 }
 
 function ListOfFilms({films}:ListOfFilmProps): JSX.Element {

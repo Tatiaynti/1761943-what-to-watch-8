@@ -1,7 +1,7 @@
 import {nanoid} from '@reduxjs/toolkit';
-import {FilmCards} from '../types/film';
+import {Film} from '../types/film';
 
-export const films: FilmCards = [
+export const films: Film[] = [
   {
     id: nanoid(),
     poster: 'img/the-grand-budapest-hotel-poster.jpg',

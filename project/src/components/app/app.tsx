@@ -10,14 +10,14 @@ import PlayerScreen from '../player-screen/player-screen';
 import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
 import PageNotFound from '../page-not-found-screen/page-not-found-screen';
-import {Film, FilmCards} from '../../types/film';
+import {Film} from '../../types/film';
 import {ReviewsList} from '../../types/reviews';
 
 type AppScreenProps = {
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
-  films: FilmCards;
+  films: Film[];
   reviews: ReviewsList;
 }
 

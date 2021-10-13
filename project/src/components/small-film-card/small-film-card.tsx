@@ -1,9 +1,9 @@
-import {FilmCards} from '../../types/film';
+import {Film} from '../../types/film';
 import {AppRoute} from '../../const';
 import {useHistory} from 'react-router';
 
 type FilmCardProps = {
-  films: FilmCards;
+  films: Film[];
   onMouseEnter: (id: string) => void;
 }
 

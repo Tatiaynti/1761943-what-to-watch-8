@@ -1,10 +1,10 @@
 import ListOfFilms from '../list-of-films/list-of-films';
-import {FilmCards} from '../../types/film';
+import {Film} from '../../types/film';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 
 type MyListProps = {
-  films: FilmCards;
+  films: Film[];
 }
 
 function MyListScreen({films}:MyListProps): JSX.Element {

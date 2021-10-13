@@ -12,5 +12,3 @@ export type Film = {
   starring: string[];
   runtime: string;
 };
-
-export type FilmCards = Film[];
