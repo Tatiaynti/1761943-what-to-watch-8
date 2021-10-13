@@ -9,12 +9,16 @@ type ListOfFilmProps = {
 function ListOfFilms({films}:ListOfFilmProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeCard, setFilmCardActive] = useState<string>();
+  function toggleActiveCardById(id: string) {
+    setFilmCardActive(id);
+  }
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
       <FilmCardScreen
         films={films}
-        onMouseEnter={(id: string) => setFilmCardActive(id)}
+        onMouseEnter={toggleActiveCardById}
       />
     </section>
   );
