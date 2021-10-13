@@ -92,23 +92,20 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
               <div className="film-card__reviews film-card__row">
                 <div className="film-card__reviews-col">
 
-                  {reviews.map((review) => {
-                    const keyValue = `${review.id}`;
-                    return (
-                      <div key = {keyValue} className="review">
-                        <blockquote className="review__quote">
-                          <p className="review__text">{review.text}</p>
+                  {reviews.map((review) => (
+                    <div key = {review.id} className="review">
+                      <blockquote className="review__quote">
+                        <p className="review__text">{review.text}</p>
 
-                          <footer className="review__details">
-                            <cite className="review__author">{review.userName}</cite>
-                            <time className="review__date" dateTime="2015-11-18">{review.date}</time>
-                          </footer>
-                        </blockquote>
+                        <footer className="review__details">
+                          <cite className="review__author">{review.userName}</cite>
+                          <time className="review__date" dateTime="2015-11-18">{review.date}</time>
+                        </footer>
+                      </blockquote>
 
-                        <div className="review__rating">{review.rate}</div>
-                      </div>
-                    );
-                  })}
+                      <div className="review__rating">{review.rate}</div>
+                    </div>
+                  ))}
 
                 </div>
                 {/* разделение на колонки */}
