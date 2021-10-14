@@ -7,8 +7,7 @@ type ListOfFilmProps = {
 }
 
 function ListOfFilms({films}:ListOfFilmProps): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeCard, setFilmCardActive] = useState<string>();
+  const [, setFilmCardActive] = useState<string>();
   function toggleActiveCardById(id: string) {
     setFilmCardActive(id);
   }

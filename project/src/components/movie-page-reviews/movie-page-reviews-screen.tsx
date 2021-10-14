@@ -1,4 +1,4 @@
-import {useHistory} from 'react-router';
+import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {Film} from '../../types/film';
 import {Review} from '../../types/reviews';
@@ -12,7 +12,6 @@ type MovieReviewsProps = {
 function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
   const {reviews, film} = props;
   const {image, poster, title, genre, releaseYear} = film;
-  const history = useHistory();
 
   return (
     <>
@@ -50,19 +49,23 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player.replace(':id', film.id))}>
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <Link to={AppRoute.Player.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                  <button className="btn btn--play film-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                 </button>
-                <a className="btn film-card__button" onClick={() => history.push(AppRoute.AddReview.replace(':id', film.id))}>Add review</a>
+                <Link to={AppRoute.AddReview.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                  <a className="btn film-card__button">Add review</a>
+                </Link>
               </div>
             </div>
           </div>
@@ -78,13 +81,19 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <a className="film-nav__link" onClick={() => history.push(AppRoute.Film.replace(':id', film.id))}>Overview</a>
+                    <Link to={AppRoute.Film.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                      <a className="film-nav__link">Overview</a>
+                    </Link>
                   </li>
                   <li className="film-nav__item">
-                    <a className="film-nav__link" onClick={() => history.push(AppRoute.FilmDetails.replace(':id', film.id))}>Details</a>
+                    <Link to={AppRoute.FilmDetails.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                      <a className="film-nav__link">Details</a>
+                    </Link>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <a className="film-nav__link" onClick={() => history.push(AppRoute.FilmReviews.replace(':id', film.id))}>Reviews</a>
+                    <Link to={AppRoute.FilmReviews.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                      <a className="film-nav__link">Reviews</a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
