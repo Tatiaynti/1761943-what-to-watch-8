@@ -1,14 +1,16 @@
+import {Film} from '../../types/film';
+import Footer from '../footer/footer';
+import ListOfFilms from '../list-of-films/list-of-films';
 import Logo from '../logo/logo';
-import FilmCardScreen from '../small-film-card/small-film-card';
 
 type MainScreenProps = {
-  cardsCount: number;
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
+  films: Film[];
 }
 
-function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: MainScreenProps):  JSX.Element {
+function MainScreen({promoTitle, promoGenre, promoReleaseYear, films}: MainScreenProps):  JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -104,24 +106,13 @@ function MainScreen({cardsCount, promoTitle, promoGenre, promoReleaseYear}: Main
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {new Array(cardsCount).fill(FilmCardScreen).map((filmCard, i) => filmCard(i))}
-          </div>
+          <ListOfFilms films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <Logo />
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );

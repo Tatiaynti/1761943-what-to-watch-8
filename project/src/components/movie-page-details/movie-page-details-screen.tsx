@@ -1,12 +1,22 @@
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
+import {Film} from '../../types/film';
 import Logo from '../logo/logo';
 
-function MoviePageDetailsScreen(): JSX.Element {
+type MovieDetailsScreenProps = {
+  film: Film;
+}
+
+function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
+  const {film} = props;
+  const {poster, image, title, genre, releaseYear, director, runtime, starring} = film;
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={poster} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -30,26 +40,30 @@ function MoviePageDetailsScreen(): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <Link to={AppRoute.Player.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                  <button className="btn btn--play film-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to={AppRoute.AddReview.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                  <a className="btn film-card__button">Add review</a>
+                </Link>
               </div>
             </div>
           </div>
@@ -58,20 +72,26 @@ function MoviePageDetailsScreen(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={image} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Overview</a>
+                    <Link to={AppRoute.Film.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                      <a className="film-nav__link">Overview</a>
+                    </Link>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="/" className="film-nav__link">Details</a>
+                    <Link to={AppRoute.FilmDetails.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                      <a className="film-nav__link">Details</a>
+                    </Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Reviews</a>
+                    <Link to={AppRoute.FilmReviews.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                      <a className="film-nav__link">Reviews</a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -80,12 +100,13 @@ function MoviePageDetailsScreen(): JSX.Element {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Director</strong>
-                    <span className="film-card__details-value">Wes Anderson</span>
+                    <span className="film-card__details-value">{director}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Starring</strong>
                     <span className="film-card__details-value">
-                    Bill Murray, <br></br>
+                      {starring.join(`, ${  <br/>}`)}
+                      {/* Bill Murray, <br></br>
                     Edward Norton, <br></br>
                     Jude Law, <br></br>
                     Willem Dafoe, <br></br>
@@ -96,7 +117,7 @@ function MoviePageDetailsScreen(): JSX.Element {
                     Owen Wilkinson, <br></br>
                     Adrien Brody, <br></br>
                     Ralph Fiennes, <br></br>
-                    Jeff Goldblum
+                    Jeff Goldblum */}
                     </span>
                   </p>
                 </div>
@@ -104,15 +125,15 @@ function MoviePageDetailsScreen(): JSX.Element {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Run Time</strong>
-                    <span className="film-card__details-value">1h 39m</span>
+                    <span className="film-card__details-value">{runtime}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Genre</strong>
-                    <span className="film-card__details-value">Comedy</span>
+                    <span className="film-card__details-value">{genre}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Released</strong>
-                    <span className="film-card__details-value">2014</span>
+                    <span className="film-card__details-value">{releaseYear}</span>
                   </p>
                 </div>
               </div>
