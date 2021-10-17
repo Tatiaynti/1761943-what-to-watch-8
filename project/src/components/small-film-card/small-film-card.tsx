@@ -1,8 +1,9 @@
 import {Film} from '../../types/film';
 import {AppRoute} from '../../const';
-import {useHistory} from 'react-router';
 import VideoPlayer from '../video-player/video-player';
 import {useEffect, useRef, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {generatePath} from 'react-router';
 
 const TIMER_DELAY = 1000;
 
@@ -13,10 +14,14 @@ type FilmCardProps = {
 
 function FilmCardScreen(props: FilmCardProps): JSX.Element {
   const {film, onMouseEnter} = props;
-  const history = useHistory();
 
-  const [play, setPlay] = useState(false);
-  const [hover, setHover] = useState(false);
+  const [isPlay, setIsPlay] = useState<boolean>(false);
+  const [isHover, setIsHover] = useState<boolean>(false);
+
+  function makeFilmCardActive() {
+    onMouseEnter(film.id);
+    setIsHover(true);
+  }
 
   const timer = useRef<NodeJS.Timeout | null>(null);
   const clearTimer = () => {
@@ -28,25 +33,23 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
 
   useEffect(() => {
     clearTimer();
-    if (!hover) {
-      setPlay(false);
+    if (!isHover) {
+      setIsPlay(false);
     }
-    if (hover) {
-      timer.current = setTimeout(() => setPlay(true), TIMER_DELAY);
+    if (isHover) {
+      timer.current = setTimeout(() => setIsPlay(true), TIMER_DELAY);
     }
     return clearTimer;
-  }, [hover]);
+  }, [isHover]);
 
   return (
-    <article className="small-film-card catalog__films-card" id={`film-${film.id}`}  onMouseEnter={() => {
-      onMouseEnter(film.id);
-      setHover(true);
-    }}
-    onMouseLeave={() => setHover(false)}
+    <article className="small-film-card catalog__films-card" id={`film-${film.id}`}
+      onMouseEnter={() => makeFilmCardActive()}
+      onMouseLeave={() => setIsHover(false)}
     >
       <div className="small-film-card__image">
         {
-          play ?
+          isPlay ?
             <VideoPlayer
               previewSrc={film.preview}
             /> :
@@ -54,7 +57,9 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
         }
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" onClick={() => history.push(AppRoute.Film.replace(':id', film.id))}>{film.title}</a>
+        <Link to={generatePath(AppRoute.Film, {id: film.id})} style={{color: 'inherit'}}>
+          <a className="small-film-card__link">{film.title}</a>
+        </Link>
       </h3>
     </article>
   );
