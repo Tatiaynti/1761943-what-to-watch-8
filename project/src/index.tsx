@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import {films} from './mocks/films';
 import {reviews} from './mocks/reviews';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {reducer} from './store/reducer';
 
 const Settings = {
   PROMO_TITLE: 'The Grand Budapest',
@@ -10,14 +13,18 @@ const Settings = {
   PROMO_RELEASE_YEAR: 2014,
 } as const;
 
+const store = createStore(reducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      promoTitle = {Settings.PROMO_TITLE}
-      promoGenre = {Settings.PROMO_GENRE}
-      promoReleaseYear = {Settings.PROMO_RELEASE_YEAR}
-      films = {films}
-      reviews = {reviews}
-    />
+    <Provider store = {store}>
+      <App
+        promoTitle = {Settings.PROMO_TITLE}
+        promoGenre = {Settings.PROMO_GENRE}
+        promoReleaseYear = {Settings.PROMO_RELEASE_YEAR}
+        films = {films}
+        reviews = {reviews}
+      />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
