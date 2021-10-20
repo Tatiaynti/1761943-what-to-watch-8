@@ -1,4 +1,3 @@
-
 type VideoPlayerProps = {
   previewSrc: string;
 }
