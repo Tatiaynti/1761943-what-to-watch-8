@@ -6,6 +6,7 @@ import {reviews} from './mocks/reviews';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {reducer} from './store/reducer';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 const Settings = {
   PROMO_TITLE: 'The Grand Budapest',
@@ -13,7 +14,10 @@ const Settings = {
   PROMO_RELEASE_YEAR: 2014,
 } as const;
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  composeWithDevTools(),
+);
 
 ReactDOM.render(
   <React.StrictMode>
