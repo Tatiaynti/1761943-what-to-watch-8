@@ -1,10 +1,7 @@
-import {ActionType, ChangeGenreToAllAction, LoadListAction} from '../types/action';
+import {ActionType} from '../types/action';
+import {Genres} from '../types/genres';
 
-export const incrementGenre = (genre: string): ChangeGenreToAllAction => ({
-  type: ActionType.ChangeGenreToAll,
-  payload: genre,
-});
-
-export const IncrementList = (): LoadListAction => ({
-  type: ActionType.LoadList,
-});
+export const setGenre = (genre: Genres) => ({
+  type: ActionType.ChangeGenre,
+  payload: {genre},
+} as const);

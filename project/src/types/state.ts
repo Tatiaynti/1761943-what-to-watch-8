@@ -1,4 +1,7 @@
+import {Film} from './film';
+import {Genres} from './genres';
+
 export type State = {
-  genre: string,
-  filmList: string,
+  genre: Genres,
+  filmList: Film[],
 };
