@@ -16,13 +16,14 @@ function ListOfFilms({films}:ListOfFilmProps): JSX.Element {
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
       <div className="catalog__films-list">
-        {films.map((film) =>
+        {films ? films.map((film) =>
           (
             <FilmCardScreen
               key={film.id}
               film={film}
               onMouseEnter={toggleActiveCardById}
-            />))}
+            />))
+          : '' }
       </div>
     </section>
   );
