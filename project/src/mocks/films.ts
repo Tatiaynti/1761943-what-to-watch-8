@@ -1,18 +1,18 @@
 import {nanoid} from '@reduxjs/toolkit';
 import {Film} from '../types/film';
-import {Genres} from '../types/genres';
+import {GenreList} from '../types/genres';
 import { getRandomElement } from './utils-for-mock';
 
-const GENRES: Genres[] = [
-  Genres.Comedies,
-  Genres.Crime,
-  Genres.Documentary,
-  Genres.Dramas,
-  Genres.Horror,
-  Genres.KidsAndFamily,
-  Genres.Romance,
-  Genres.SciFi,
-  Genres.Thrillers,
+const GENRES: GenreList[] = [
+  GenreList.Comedies,
+  GenreList.Crime,
+  GenreList.Documentary,
+  GenreList.Dramas,
+  GenreList.Horror,
+  GenreList.KidsAndFamily,
+  GenreList.Romance,
+  GenreList.SciFi,
+  GenreList.Thrillers,
 ];
 
 const films: Film[] = [

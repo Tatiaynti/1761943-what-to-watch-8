@@ -1,4 +1,4 @@
-export enum Genres {
+enum GenreList {
   AllGenres = 'allGenres',
   Comedies = 'comedies',
   Crime = 'crime',
@@ -11,8 +11,10 @@ export enum Genres {
   Thrillers = 'thrillers',
 }
 
-export type Genre = {
-  id: string,
+type Genre = {
   title: string,
-  value: Genres,
+  value: GenreList,
 };
+
+export {GenreList};
+export type {Genre};

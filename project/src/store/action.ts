@@ -1,7 +1,9 @@
 import {ActionType} from '../types/action';
-import {Genres} from '../types/genres';
+import {GenreList} from '../types/genres';
 
-export const setGenre = (genre: Genres) => ({
+const setGenre = (genre: GenreList) => ({
   type: ActionType.ChangeGenre,
   payload: {genre},
 } as const);
+
+export {setGenre};
