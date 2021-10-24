@@ -1,5 +1,9 @@
 import {nanoid} from '@reduxjs/toolkit';
 import {Film} from '../types/film';
+import {GenreList} from '../types/genres';
+import {getRandomElement} from './utils-for-mock';
+
+const GENRES: GenreList[] = Object.values(GenreList);
 
 const films: Film[] = [
   {
@@ -7,7 +11,7 @@ const films: Film[] = [
     poster: 'img/the-grand-budapest-hotel-poster.jpg',
     image: 'img/bg-the-grand-budapest-hotel.jpg',
     title: 'The Grand Budapest Hotel',
-    genre: 'Drama',
+    genre: getRandomElement(GENRES),
     releaseYear: 2014,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     rate: 5.7,
@@ -21,7 +25,7 @@ const films: Film[] = [
     poster: 'img/bohemian-rhapsody.jpg',
     image: 'img/bohemian-rhapsody.jpg',
     title: 'Bohemian Rhapsody',
-    genre: 'Western',
+    genre: getRandomElement(GENRES),
     releaseYear: 1995,
     description: 'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
     rate: 4.9,
@@ -35,7 +39,7 @@ const films: Film[] = [
     poster: 'img/dardjeeling-limited.jpg',
     image: 'img/dardjeeling-limited.jpg',
     title: 'Dardjeeling Limited',
-    genre: 'Fiction',
+    genre: getRandomElement(GENRES),
     releaseYear: 2016,
     description: 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.',
     rate: 9.1,
@@ -49,7 +53,7 @@ const films: Film[] = [
     poster: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
     image: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
     title: 'Fantastic Beasts The Crimes Of Grindelwald',
-    genre: 'Action',
+    genre: getRandomElement(GENRES),
     releaseYear: 2021,
     description: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.',
     rate: 3,
@@ -63,7 +67,7 @@ const films: Film[] = [
     poster: 'img/johnny-english.jpg',
     image: 'img/johnny-english.jpg',
     title: 'Johnny English',
-    genre: 'Fantasy',
+    genre: getRandomElement(GENRES),
     releaseYear: 1998,
     description: 'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.',
     rate: 10,
@@ -77,7 +81,7 @@ const films: Film[] = [
     poster: 'img/macbeth.jpg',
     image: 'img/macbeth.jpg',
     title: 'Macbeth',
-    genre: 'Comedy',
+    genre: getRandomElement(GENRES),
     releaseYear: 2005,
     description: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.',
     rate: 2.5,
@@ -91,7 +95,7 @@ const films: Film[] = [
     poster: 'img/midnight-special.jpg',
     image: 'img/midnight-special.jpg',
     title: 'Midnight Special',
-    genre: 'Thriller',
+    genre: getRandomElement(GENRES),
     releaseYear: 2010,
     description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     rate: 7.8,
@@ -105,7 +109,7 @@ const films: Film[] = [
     poster: 'img/moonrise-kingdom.jpg',
     image: 'img/moonrise-kingdom.jpg',
     title: 'Moonrise Kingdom',
-    genre: 'Horror',
+    genre: getRandomElement(GENRES),
     releaseYear: 2007,
     description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
     rate: 5.9,

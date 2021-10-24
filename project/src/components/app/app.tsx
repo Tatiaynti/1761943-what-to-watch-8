@@ -31,7 +31,6 @@ function App({promoTitle, promoGenre, promoReleaseYear, films, reviews}: AppScre
             promoTitle={promoTitle}
             promoGenre={promoGenre}
             promoReleaseYear={promoReleaseYear}
-            films = {films}
           />
         </Route>
         <Route exact path={AppRoute.SignIn}>
