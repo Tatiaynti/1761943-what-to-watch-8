@@ -2,51 +2,21 @@ import {connect, ConnectedProps} from 'react-redux';
 import {Dispatch} from 'redux';
 import {setGenre} from '../../store/action';
 import {Actions} from '../../types/action';
-import {Genre, GenreList} from '../../types/genres';
+import {GenreList} from '../../types/genres';
 import {State} from '../../types/state';
 
-const GENRES: Genre[] = [
-  {
-    title: 'All genres',
-    value: GenreList.AllGenres,
-  },
-  {
-    title: 'Crime',
-    value: GenreList.Crime,
-  },
-  {
-    title: 'Comedies',
-    value: GenreList.Comedies,
-  },
-  {
-    title: 'Documentary',
-    value: GenreList.Documentary,
-  },
-  {
-    title: 'Dramas',
-    value: GenreList.Dramas,
-  },
-  {
-    title: 'Horror',
-    value: GenreList.Horror,
-  },
-  {
-    title: 'Kids & Family',
-    value: GenreList.KidsAndFamily,
-  },
-  {
-    title: 'Romance',
-    value: GenreList.Romance,
-  },
-  {
-    title: 'Sci-Fi',
-    value: GenreList.SciFi,
-  },
-  {
-    title: 'Thrillers',
-    value: GenreList.Thrillers,
-  },
-];
+const genreTypeToReadable = {
+  [GenreList.AllGenres]: 'All genres',
+  [GenreList.Crime]: 'Crime',
+  [GenreList.Comedies]: 'Comedies',
+  [GenreList.Documentary]: 'Documentary',
+  [GenreList.Dramas]: 'Dramas',
+  [GenreList.Horror]: 'Horror',
+  [GenreList.KidsAndFamily]: 'Kids & Family',
+  [GenreList.Romance]: 'Romance',
+  [GenreList.SciFi]: 'Sci-Fi',
+  [GenreList.Thrillers]: 'Thrillers',
+};
 
 const mapStateToProps = (state: State) => ({
   activeGenre: state.genre,
@@ -74,7 +44,7 @@ function GenresTabs(props: GenreProps): JSX.Element {
 
   return (
     <ul className="catalog__genres-list">
-      {GENRES.map(({title, value}) => (
+      {Object.values(GenreList).map((value) => (
         <li
           key={value}
           className={`catalog__genres-item ${value === activeGenre ? 'catalog__genres-item--active' : ''} `}
@@ -85,7 +55,7 @@ function GenresTabs(props: GenreProps): JSX.Element {
             id={`genre-${value}`}
             onClick={handleGenreClick(value)}
           >
-            {title}
+            {genreTypeToReadable[value]}
           </a>
         </li>
       ))}
