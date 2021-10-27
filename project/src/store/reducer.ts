@@ -1,17 +1,27 @@
-import {films} from '../mocks/films';
+import {AuthorizationStatus} from '../const';
 import {Actions, ActionType} from '../types/action';
 import {GenreList} from '../types/genres';
 import {State} from '../types/state';
 
 const initialState = {
   genre: GenreList.AllGenres,
-  filmList: films,
+  films: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
 } as const;
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.ChangeGenre: {
       return {...state, genre: action.payload.genre};
+    }
+    case ActionType.LoadFilms: {
+      return {...state, films: action.payload.films};
+    }
+    case ActionType.RequireAuthorization: {
+      return {...state, authorizationStatus: action.payload};
+    }
+    case ActionType.RequireLogout: {
+      return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
     }
     default: {
       return state;
