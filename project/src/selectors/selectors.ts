@@ -2,7 +2,7 @@ import {createSelector} from 'reselect';
 import {GenreList} from '../types/genres';
 import {State} from '../types/state';
 
-const getFilms = (state: State) => state.filmList;
+const getFilms = (state: State) => state.films;
 
 const getGenre = (state: State) => state.genre;
 

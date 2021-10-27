@@ -3,7 +3,7 @@ import {GenreList} from './genres';
 
 type State = {
   genre: GenreList,
-  filmList: Film[],
+  films: Film[],
 };
 
 export type {State};

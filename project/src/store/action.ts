@@ -1,4 +1,5 @@
 import {ActionType} from '../types/action';
+import {Film} from '../types/film';
 import {GenreList} from '../types/genres';
 
 const setGenre = (genre: GenreList) => ({
@@ -6,4 +7,9 @@ const setGenre = (genre: GenreList) => ({
   payload: {genre},
 } as const);
 
-export {setGenre};
+const loadFilms = (films: Film[]) => ({
+  type: ActionType.LoadFilms,
+  payload: {films},
+} as const);
+
+export {setGenre, loadFilms};
