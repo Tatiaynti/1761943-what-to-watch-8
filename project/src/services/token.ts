@@ -16,3 +16,4 @@ const dropToken = (): void => {
 };
 
 export {getToken, setToken, dropToken};
+export type {Token};
