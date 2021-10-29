@@ -5,7 +5,7 @@ import {AuthData} from '../types/auth-data';
 import {Film} from '../types/film';
 import {loadFilms, requireAuthorization, requireLogout} from './action';
 
-export const fetchQuestionAction = (): ThunkActionResult =>
+export const fetchFilmAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const {data} = await api.get<Film[]>(APIRoute.Films);
     dispatch(loadFilms(data));

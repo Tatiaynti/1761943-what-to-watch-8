@@ -7,7 +7,8 @@ const initialState = {
   genre: GenreList.AllGenres,
   films: [],
   authorizationStatus: AuthorizationStatus.Unknown,
-} as const;
+  isDataLoaded: false,
+};
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
@@ -18,7 +19,7 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, films: action.payload.films};
     }
     case ActionType.RequireAuthorization: {
-      return {...state, authorizationStatus: action.payload};
+      return {...state, authorizationStatus: action.payload, isDataLoaded: true};
     }
     case ActionType.RequireLogout: {
       return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
