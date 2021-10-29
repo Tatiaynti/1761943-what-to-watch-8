@@ -19,7 +19,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
   const [isHover, setIsHover] = useState<boolean>(false);
 
   function makeFilmCardActive() {
-    onMouseEnter(film.id);
+    onMouseEnter(film.id.toString());
     setIsHover(true);
   }
 

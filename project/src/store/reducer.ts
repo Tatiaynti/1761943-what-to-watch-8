@@ -1,7 +1,9 @@
 import {AuthorizationStatus} from '../const';
 import {Actions, ActionType} from '../types/action';
+import {FilmFromServerType} from '../types/film';
 import {GenreList} from '../types/genres';
 import {State} from '../types/state';
+import {adaptToClient} from '../utils/common';
 
 const initialState = {
   genre: GenreList.AllGenres,
@@ -16,7 +18,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, genre: action.payload.genre};
     }
     case ActionType.LoadFilms: {
-      return {...state, films: action.payload.films};
+      return {...state, films: action.payload.films.map(
+        (film: FilmFromServerType) => adaptToClient(film))};
     }
     case ActionType.RequireAuthorization: {
       return {...state, authorizationStatus: action.payload, isDataLoaded: true};

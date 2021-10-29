@@ -1,6 +1,6 @@
 import {AuthorizationStatus} from '../const';
 import {ActionType} from '../types/action';
-import {Film} from '../types/film';
+import {FilmFromServerType} from '../types/film';
 import {GenreList} from '../types/genres';
 
 const setGenre = (genre: GenreList) => ({
@@ -8,7 +8,7 @@ const setGenre = (genre: GenreList) => ({
   payload: {genre},
 } as const);
 
-const loadFilms = (films: Film[]) => ({
+const loadFilms = (films: FilmFromServerType[]) => ({
   type: ActionType.LoadFilms,
   payload: {films},
 } as const);

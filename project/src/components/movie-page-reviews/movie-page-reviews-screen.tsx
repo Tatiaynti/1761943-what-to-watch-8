@@ -49,7 +49,7 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <Link to={AppRoute.Player.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                <Link to={AppRoute.Player.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
                   <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
@@ -63,7 +63,7 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={AppRoute.AddReview.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                <Link to={AppRoute.AddReview.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
                   <a className="btn film-card__button">Add review</a>
                 </Link>
               </div>
@@ -81,17 +81,17 @@ function MoviePageReviewsScreen(props: MovieReviewsProps): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <Link to={AppRoute.Film.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                    <Link to={AppRoute.Film.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
                       <a className="film-nav__link">Overview</a>
                     </Link>
                   </li>
                   <li className="film-nav__item">
-                    <Link to={AppRoute.FilmDetails.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                    <Link to={AppRoute.FilmDetails.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
                       <a className="film-nav__link">Details</a>
                     </Link>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <Link to={AppRoute.FilmReviews.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                    <Link to={AppRoute.FilmReviews.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
                       <a className="film-nav__link">Reviews</a>
                     </Link>
                   </li>
