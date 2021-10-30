@@ -2,7 +2,6 @@ import {Film} from '../../types/film';
 import {AppRoute} from '../../const';
 import VideoPlayer from '../video-player/video-player';
 import {useEffect, useRef, useState} from 'react';
-import {Link} from 'react-router-dom';
 import {generatePath} from 'react-router';
 
 const TIMER_DELAY = 1000;
@@ -57,9 +56,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
         }
       </div>
       <h3 className="small-film-card__title">
-        <Link to={generatePath(AppRoute.Film, {id: film.id})} style={{color: 'inherit'}}>
-          <a className="small-film-card__link">{film.title}</a>
-        </Link>
+        <a className="small-film-card__link" href={generatePath(AppRoute.Film, {id: film.id})}>{film.title}</a>
       </h3>
     </article>
   );

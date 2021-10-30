@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {Film} from '../../types/film';
 import Logo from '../logo/logo';
+import {generatePath} from 'react-router';
 
 type MovieDetailsScreenProps = {
   film: Film;
@@ -61,9 +62,7 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={AppRoute.AddReview.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
-                  <a className="btn film-card__button">Add review</a>
-                </Link>
+                <a className="btn film-card__button" href={generatePath(AppRoute.AddReview, {id: film.id})}>Add review</a>
               </div>
             </div>
           </div>
@@ -79,19 +78,13 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <Link to={AppRoute.Film.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
-                      <a className="film-nav__link">Overview</a>
-                    </Link>
+                    <a className="film-nav__link" href={generatePath(AppRoute.Film, {id: film.id})}>Overview</a>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <Link to={AppRoute.FilmDetails.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
-                      <a className="film-nav__link">Details</a>
-                    </Link>
+                    <a className="film-nav__link" href={generatePath(AppRoute.FilmDetails, {id: film.id})}>Details</a>
                   </li>
                   <li className="film-nav__item">
-                    <Link to={AppRoute.FilmReviews.replace(':id', film.id.toString())} style={{textDecoration: 'none'}}>
-                      <a className="film-nav__link">Reviews</a>
-                    </Link>
+                    <a className="film-nav__link" href={generatePath(AppRoute.FilmReviews, {id: film.id})}>Reviews</a>
                   </li>
                 </ul>
               </nav>
