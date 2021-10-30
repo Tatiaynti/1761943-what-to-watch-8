@@ -1,13 +1,12 @@
 import ListOfFilms from '../list-of-films/list-of-films';
-import {Film} from '../../types/film';
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 
-type MyListProps = {
-  films: Film[];
-}
+function MyListScreen(): JSX.Element {
+  const films = useSelector((state: State) => state.films);
 
-function MyListScreen({films}:MyListProps): JSX.Element {
   return (
     <div className="user-page">
       <Header />
