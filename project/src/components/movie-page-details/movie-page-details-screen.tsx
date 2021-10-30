@@ -46,7 +46,7 @@ function MoviePageDetailsScreen(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <Link to={AppRoute.Player.replace(':id', firstFilm.id.toString())} style={{textDecoration: 'none'}}>
+                <Link to={generatePath(AppRoute.Player, {id: firstFilm.id})}>
                   <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
