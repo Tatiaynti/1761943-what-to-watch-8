@@ -1,3 +1,4 @@
+import {AuthorizationStatus} from '../const';
 import {Film, FilmFromServerType} from '../types/film';
 
 function adaptToClient(film: FilmFromServerType): Film {
@@ -21,4 +22,7 @@ function adaptToClient(film: FilmFromServerType): Film {
   return adaptedFilm;
 }
 
-export {adaptToClient};
+const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;
+
+export {adaptToClient, isCheckedAuth};

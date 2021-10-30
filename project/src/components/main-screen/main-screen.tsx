@@ -21,7 +21,7 @@ const connector = connect(mapStateToProps);
 
 type ConnectedMainProps = ConnectedProps<typeof connector> & MainScreenProps;
 
-function MainScreen(props: ConnectedMainProps):  JSX.Element {
+function MainScreen(props: ConnectedMainProps): JSX.Element {
   const {promoTitle, promoGenre, promoReleaseYear, films} =  props;
 
   return (

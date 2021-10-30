@@ -7,7 +7,7 @@ enum GenreList {
   Horror = 'horror',
   KidsAndFamily = 'kidsAndFamily',
   Romance = 'romance',
-  SciFi = 'sci-Fi',
+  SciFi = 'sciFi',
   Thrillers = 'thrillers',
 }
 

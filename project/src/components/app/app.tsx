@@ -13,15 +13,13 @@ import PrivateRoute from '../private-route/private-route';
 import PageNotFound from '../page-not-found-screen/page-not-found-screen';
 import {State} from '../../types/state';
 import Spinner from '../spinner/spinner';
+import {isCheckedAuth} from '../../utils/common';
 
 type AppScreenProps = {
   promoTitle: string;
   promoGenre: string;
   promoReleaseYear: number;
 }
-
-export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
-  authorizationStatus === AuthorizationStatus.Unknown;
 
 const mapStateToProps = ({authorizationStatus, isDataLoaded, films}: State) => ({
   authorizationStatus,
