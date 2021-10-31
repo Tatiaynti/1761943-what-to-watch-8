@@ -1,5 +1,5 @@
 import {connect, ConnectedProps} from 'react-redux';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
@@ -14,6 +14,7 @@ import PageNotFound from '../page-not-found-screen/page-not-found-screen';
 import {State} from '../../types/state';
 import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
+import browserHistory from '../../browser-history';
 
 type AppScreenProps = {
   promoTitle: string;
@@ -38,7 +39,7 @@ function App(props: PropsFromRedux): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <MainScreen
