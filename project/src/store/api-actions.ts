@@ -14,8 +14,8 @@ const fetchFilmAction = (): ThunkActionResult =>
 const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     await api.get(APIRoute.Login)
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      .then((response: any) => {
+        dispatch(requireAuthorization(response.payload));
       });
   };
 
