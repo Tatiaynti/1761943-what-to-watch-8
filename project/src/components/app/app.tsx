@@ -1,6 +1,6 @@
 import {connect, ConnectedProps} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
 import MoviePageDetailsScreen from '../movie-page-details/movie-page-details-screen';
@@ -63,7 +63,6 @@ function App(props: PropsFromRedux): JSX.Element {
           exact
           path={AppRoute.AddReview}
           render={() => <AddReviewScreen />}
-          authorizationStatus={AuthorizationStatus.Auth} // после разработки закрыть для неавторизованных
         >
         </PrivateRoute>
         <PrivateRoute
@@ -72,7 +71,6 @@ function App(props: PropsFromRedux): JSX.Element {
           render={() =>
             (
               <MyListScreen />)}
-          authorizationStatus={AuthorizationStatus.Auth} // после разработки закрыть для неавторизованных
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>
