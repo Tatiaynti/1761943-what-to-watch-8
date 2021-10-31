@@ -13,8 +13,10 @@ const fetchFilmAction = (): ThunkActionResult =>
 
 const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(APIRoute.Login);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    await api.get(APIRoute.Login)
+      .then(() => {
+        dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      });
   };
 
 const loginAction = ({login: email, password}: AuthData): ThunkActionResult =>
