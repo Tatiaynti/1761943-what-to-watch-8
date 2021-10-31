@@ -1,15 +1,14 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import {Film} from '../../types/film';
 import Logo from '../logo/logo';
+import {generatePath} from 'react-router';
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 
-type MovieDetailsScreenProps = {
-  film: Film;
-}
-
-function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
-  const {film} = props;
-  const {poster, image, title, genre, releaseYear, director, runtime, starring} = film;
+function MoviePageDetailsScreen(): JSX.Element {
+  const films = useSelector((state: State) => state.films);
+  const [firstFilm] = films;
+  const {poster, image, title, genre, releaseYear, director, runtime, starring} = firstFilm;
 
   return (
     <>
@@ -47,7 +46,7 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <Link to={AppRoute.Player.replace(':id', film.id)} style={{textDecoration: 'none'}}>
+                <Link to={generatePath(AppRoute.Player, {id: firstFilm.id})} style={{textDecoration: 'none'}}>
                   <button className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
@@ -61,9 +60,7 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={AppRoute.AddReview.replace(':id', film.id)} style={{textDecoration: 'none'}}>
-                  <a className="btn film-card__button">Add review</a>
-                </Link>
+                <a className="btn film-card__button" href={generatePath(AppRoute.AddReview, {id: firstFilm.id})}>Add review</a>
               </div>
             </div>
           </div>
@@ -79,19 +76,13 @@ function MoviePageDetailsScreen(props: MovieDetailsScreenProps): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item">
-                    <Link to={AppRoute.Film.replace(':id', film.id)} style={{textDecoration: 'none'}}>
-                      <a className="film-nav__link">Overview</a>
-                    </Link>
+                    <a className="film-nav__link" href={generatePath(AppRoute.Film, {id: firstFilm.id})}>Overview</a>
                   </li>
                   <li className="film-nav__item film-nav__item--active">
-                    <Link to={AppRoute.FilmDetails.replace(':id', film.id)} style={{textDecoration: 'none'}}>
-                      <a className="film-nav__link">Details</a>
-                    </Link>
+                    <a className="film-nav__link" href={generatePath(AppRoute.FilmDetails, {id: firstFilm.id})}>Details</a>
                   </li>
                   <li className="film-nav__item">
-                    <Link to={AppRoute.FilmReviews.replace(':id', film.id)} style={{textDecoration: 'none'}}>
-                      <a className="film-nav__link">Reviews</a>
-                    </Link>
+                    <a className="film-nav__link" href={generatePath(AppRoute.FilmReviews, {id: firstFilm.id})}>Reviews</a>
                   </li>
                 </ul>
               </nav>

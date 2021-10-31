@@ -1,14 +1,12 @@
-import {Film} from '../../types/film';
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 
 const styles = {left: '30%'};
 
-type PlayerProps = {
-  film: Film;
-}
-
-function PlayerScreen(props: PlayerProps): JSX.Element {
-  const {film} = props;
-  const {title, poster} = film;
+function PlayerScreen(): JSX.Element {
+  const films = useSelector((state: State) => state.films);
+  const [firstFilm] = films;
+  const {title, poster} = firstFilm;
 
   return (
     <div className="player">

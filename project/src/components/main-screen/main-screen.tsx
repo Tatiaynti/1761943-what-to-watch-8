@@ -5,6 +5,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import {State} from '../../types/state';
 import {getFilteredFilms} from '../../selectors/selectors';
 import GenresTabs from '../genres-tabs/genres-tabs';
+import Spinner from '../spinner/spinner';
 
 type MainScreenProps = {
   promoTitle: string;
@@ -20,7 +21,7 @@ const connector = connect(mapStateToProps);
 
 type ConnectedMainProps = ConnectedProps<typeof connector> & MainScreenProps;
 
-function MainScreen(props: ConnectedMainProps):  JSX.Element {
+function MainScreen(props: ConnectedMainProps): JSX.Element {
   const {promoTitle, promoGenre, promoReleaseYear, films} =  props;
 
   return (
@@ -86,7 +87,7 @@ function MainScreen(props: ConnectedMainProps):  JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresTabs/>
-          <ListOfFilms films={films}/>
+          {films.length > 0 ? <ListOfFilms films={films} /> : <Spinner />}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

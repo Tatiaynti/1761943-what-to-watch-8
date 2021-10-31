@@ -1,14 +1,12 @@
-import {Film} from '../../types/film';
 import Logo from '../logo/logo';
 import {ChangeEvent, useState} from 'react';
+import {useSelector} from 'react-redux';
+import {State} from '../../types/state';
 
-type AddReviewProps = {
-  film: Film;
-}
-
-function AddReviewScreen(props: AddReviewProps): JSX.Element {
-  const {film} = props;
-  const {title, image, poster} = film;
+function AddReviewScreen(): JSX.Element {
+  const films = useSelector((state: State) => state.films);
+  const [firstFilm] = films;
+  const {title, image, poster} = firstFilm;
   const [review, setReview] = useState('');
   const [rating, setRating] = useState('');
   const isFormInvalid = Boolean(rating === undefined || review.length < 50);
