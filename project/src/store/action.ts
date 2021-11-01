@@ -1,4 +1,4 @@
-import {AuthorizationStatus} from '../const';
+import {AppRoute, AuthorizationStatus} from '../const';
 import {ActionType} from '../types/action';
 import {FilmFromServerType} from '../types/film';
 import {GenreList} from '../types/genres';
@@ -22,4 +22,9 @@ const requireLogout = () => ({
   type: ActionType.RequireLogout,
 } as const);
 
-export {setGenre, loadFilms, requireAuthorization, requireLogout};
+const redirectToRoute = (url: AppRoute) => ({
+  type: ActionType.RedirectToRoute,
+  payload: url,
+} as const);
+
+export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute};

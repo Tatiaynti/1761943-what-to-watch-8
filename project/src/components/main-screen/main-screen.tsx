@@ -6,6 +6,9 @@ import {State} from '../../types/state';
 import {getFilteredFilms} from '../../selectors/selectors';
 import GenresTabs from '../genres-tabs/genres-tabs';
 import Spinner from '../spinner/spinner';
+import {AuthorizationStatus} from '../../const';
+import UserBlockLoggedIn from '../user-block/user-block-logged-in';
+import UserBlockLoggedOut from '../user-block/user-block-logged-out';
 
 type MainScreenProps = {
   promoTitle: string;
@@ -15,6 +18,7 @@ type MainScreenProps = {
 
 const mapStateToProps = (state: State) => ({
   films: getFilteredFilms(state),
+  auth: state.authorizationStatus,
 });
 
 const connector = connect(mapStateToProps);
@@ -22,7 +26,7 @@ const connector = connect(mapStateToProps);
 type ConnectedMainProps = ConnectedProps<typeof connector> & MainScreenProps;
 
 function MainScreen(props: ConnectedMainProps): JSX.Element {
-  const {promoTitle, promoGenre, promoReleaseYear, films} =  props;
+  const {promoTitle, promoGenre, promoReleaseYear, films, auth} =  props;
 
   return (
     <>
@@ -38,16 +42,8 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
             <Logo />
           </div>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link" href="/">Sign out</a>
-            </li>
-          </ul>
+          {auth === AuthorizationStatus.Auth ? <UserBlockLoggedIn /> : <UserBlockLoggedOut />}
+
         </header>
 
         <div className="film-card__wrap">

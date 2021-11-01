@@ -2,9 +2,13 @@ import Logo from '../logo/logo';
 import {ChangeEvent, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
+import { AuthorizationStatus } from '../../const';
+import UserBlockLoggedIn from '../user-block/user-block-logged-in';
+import UserBlockLoggedOut from '../user-block/user-block-logged-out';
 
 function AddReviewScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
+  const auth = useSelector((state: State) => state.authorizationStatus);
   const [firstFilm] = films;
   const {title, image, poster} = firstFilm;
   const [review, setReview] = useState('');
@@ -36,16 +40,7 @@ function AddReviewScreen(): JSX.Element {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link" href="/">Sign out</a>
-            </li>
-          </ul>
+          {auth === AuthorizationStatus.Auth ? <UserBlockLoggedIn /> : <UserBlockLoggedOut />}
         </header>
 
         <div className="film-card__poster film-card__poster--small">

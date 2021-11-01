@@ -1,14 +1,14 @@
 enum GenreList {
   AllGenres = 'allGenres',
-  Comedies = 'comedies',
-  Crime = 'crime',
-  Documentary = 'documentary',
-  Dramas = 'dramas',
-  Horror = 'horror',
-  KidsAndFamily = 'kidsAndFamily',
-  Romance = 'romance',
+  Comedies = 'Comedy',
+  Crime = 'Crime',
+  Documentary = 'Documentary',
+  Dramas = 'Drama',
+  Horror = 'Horror',
+  KidsAndFamily = 'Adventure',
+  Romance = 'Romance',
   SciFi = 'sciFi',
-  Thrillers = 'thrillers',
+  Thrillers = 'Thrillers',
 }
 
 type Genre = {
