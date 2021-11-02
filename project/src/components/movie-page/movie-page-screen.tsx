@@ -1,16 +1,13 @@
 import {Link} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import Logo from '../logo/logo';
 import {generatePath} from 'react-router';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
-import UserBlockLoggedIn from '../user-block/user-block-logged-in';
-import UserBlockLoggedOut from '../user-block/user-block-logged-out';
+import {UserBlock} from '../user-block/user-block';
 
 function MoviePageScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
-  const auth = useSelector((state: State) => state.authorizationStatus);
-
   const [firstFilm] = films;
 
   const {title, image, poster, genre, releaseYear, rate} = firstFilm;
@@ -30,7 +27,7 @@ function MoviePageScreen(): JSX.Element {
               <Logo/>
             </div>
 
-            {auth === AuthorizationStatus.Auth ? <UserBlockLoggedIn /> : <UserBlockLoggedOut />}
+            <UserBlock/>
 
           </header>
 

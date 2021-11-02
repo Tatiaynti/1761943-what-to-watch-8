@@ -1,12 +1,11 @@
 import {Link} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import {Review} from '../../types/reviews';
 import Logo from '../logo/logo';
 import {generatePath} from 'react-router';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
-import UserBlockLoggedIn from '../user-block/user-block-logged-in';
-import UserBlockLoggedOut from '../user-block/user-block-logged-out';
+import {UserBlock} from '../user-block/user-block';
 
 type MovieReviewsProps = {
   reviews: Review[];
@@ -14,7 +13,6 @@ type MovieReviewsProps = {
 
 function MoviePageReviewsScreen({reviews}: MovieReviewsProps): JSX.Element {
   const films = useSelector((state: State) => state.films);
-  const auth = useSelector((state: State) => state.authorizationStatus);
 
   const [firstFilm] = films;
   const {image, poster, title, genre, releaseYear} = firstFilm;
@@ -34,8 +32,7 @@ function MoviePageReviewsScreen({reviews}: MovieReviewsProps): JSX.Element {
               <Logo />
             </div>
 
-            {auth === AuthorizationStatus.Auth ? <UserBlockLoggedIn /> : <UserBlockLoggedOut />}
-
+            <UserBlock/>
           </header>
 
           <div className="film-card__wrap">

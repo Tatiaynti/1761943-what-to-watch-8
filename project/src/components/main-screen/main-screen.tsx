@@ -6,9 +6,7 @@ import {State} from '../../types/state';
 import {getFilteredFilms} from '../../selectors/selectors';
 import GenresTabs from '../genres-tabs/genres-tabs';
 import Spinner from '../spinner/spinner';
-import {AuthorizationStatus} from '../../const';
-import UserBlockLoggedIn from '../user-block/user-block-logged-in';
-import UserBlockLoggedOut from '../user-block/user-block-logged-out';
+import {UserBlock} from '../user-block/user-block';
 
 type MainScreenProps = {
   promoTitle: string;
@@ -18,7 +16,6 @@ type MainScreenProps = {
 
 const mapStateToProps = (state: State) => ({
   films: getFilteredFilms(state),
-  auth: state.authorizationStatus,
 });
 
 const connector = connect(mapStateToProps);
@@ -26,7 +23,7 @@ const connector = connect(mapStateToProps);
 type ConnectedMainProps = ConnectedProps<typeof connector> & MainScreenProps;
 
 function MainScreen(props: ConnectedMainProps): JSX.Element {
-  const {promoTitle, promoGenre, promoReleaseYear, films, auth} =  props;
+  const {promoTitle, promoGenre, promoReleaseYear, films} =  props;
 
   return (
     <>
@@ -42,8 +39,7 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
             <Logo />
           </div>
 
-          {auth === AuthorizationStatus.Auth ? <UserBlockLoggedIn /> : <UserBlockLoggedOut />}
-
+          <UserBlock/>
         </header>
 
         <div className="film-card__wrap">
