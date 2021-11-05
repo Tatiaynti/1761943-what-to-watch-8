@@ -27,4 +27,7 @@ function adaptToClient(film: FilmFromServerType): Film {
 const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
-export {adaptToClient, isCheckedAuth};
+const getCurrentFilm = (filmsArray: Film[], id: string): any =>
+  filmsArray.find((filmItem) => filmItem.id === Number(id)) || ({} as Film);
+
+export {adaptToClient, isCheckedAuth, getCurrentFilm};
