@@ -58,7 +58,7 @@ function MoviePageScreen(): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a className="btn film-card__button" href={generatePath(AppRoute.AddReview, {id: currentFilm.id})}>Add review</a>
+                <Link className="btn film-card__button" to={generatePath(AppRoute.AddReview, {id: currentFilm.id})}>Add review</Link>
               </div>
             </div>
           </div>

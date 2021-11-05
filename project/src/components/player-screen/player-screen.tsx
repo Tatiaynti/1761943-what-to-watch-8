@@ -1,16 +1,19 @@
 import {useSelector} from 'react-redux';
+import {useParams} from 'react-router';
 import {State} from '../../types/state';
+import {getCurrentFilm} from '../../utils/common';
 
 const styles = {left: '30%'};
 
 function PlayerScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
-  const [firstFilm] = films;
-  const {title, poster} = firstFilm;
+
+  const {id} = useParams<{ id: string }>();
+  const currentFilm = getCurrentFilm(films, id);
 
   return (
     <div className="player">
-      <video src="#" className="player__video" poster={poster}></video>
+      <video src={currentFilm.videoLink} className="player__video" poster={currentFilm.image}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -30,7 +33,7 @@ function PlayerScreen(): JSX.Element {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">{title}</div>
+          <div className="player__name">{currentFilm.title}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

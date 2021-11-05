@@ -3,11 +3,14 @@ import {ChangeEvent, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import {UserBlock} from '../user-block/user-block';
+import { useParams } from 'react-router';
+import { getCurrentFilm } from '../../utils/common';
 
 function AddReviewScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
-  const [firstFilm] = films;
-  const {title, image, poster} = firstFilm;
+  const {id} = useParams<{ id: string }>();
+  const currentFilm = getCurrentFilm(films, id);
+
   const [review, setReview] = useState('');
   const [rating, setRating] = useState('');
   const isFormInvalid = Boolean(rating === undefined || review.length < 50);
@@ -16,7 +19,7 @@ function AddReviewScreen(): JSX.Element {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={image} alt="The Grand Budapest Hotel" />
+          <img src={currentFilm.image} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -29,7 +32,7 @@ function AddReviewScreen(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{title}</a>
+                <a href="film-page.html" className="breadcrumbs__link">{currentFilm.title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link" href="/">Add review</a>
@@ -40,7 +43,7 @@ function AddReviewScreen(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={currentFilm.poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
         </div>
       </div>
 
