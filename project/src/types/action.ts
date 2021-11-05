@@ -8,7 +8,7 @@ enum ActionType {
   LoadFilms = 'loadFilms',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
-  RedirectToRoute = 'game/redirectToRoute',
+  RedirectToRoute = 'redirectToRoute',
 }
 
 type Actions =

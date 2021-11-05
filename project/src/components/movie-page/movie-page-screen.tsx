@@ -6,13 +6,13 @@ import {generatePath, useParams} from 'react-router';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import {UserBlock} from '../user-block/user-block';
-import { getCurrentFilm } from '../../utils/common';
+import {getCurrentFilm} from '../../utils/common';
+import Footer from '../footer/footer';
 
 function MoviePageScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
 
   const {id} = useParams<{ id: string }>();
-
   const currentFilm = getCurrentFilm(films, id);
   console.log(currentFilm, id);
 
@@ -149,15 +149,7 @@ function MoviePageScreen(): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Logo />
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );

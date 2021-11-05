@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import {UserBlock} from '../user-block/user-block';
 import { getCurrentFilm } from '../../utils/common';
+import Footer from '../footer/footer';
 
 type MovieReviewsProps = {
   reviews: Review[];
@@ -156,15 +157,7 @@ function MoviePageReviewsScreen({reviews}: MovieReviewsProps): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Logo />
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );

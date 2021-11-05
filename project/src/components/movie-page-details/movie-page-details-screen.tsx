@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import {UserBlock} from '../user-block/user-block';
 import { getCurrentFilm } from '../../utils/common';
+import Footer from '../footer/footer';
 
 function MoviePageDetailsScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
@@ -169,15 +170,7 @@ function MoviePageDetailsScreen(): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Logo />
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );
