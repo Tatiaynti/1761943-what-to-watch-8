@@ -15,10 +15,11 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-enum APIRoute {
-  Films = '/films',
-  Login = '/login',
-  Logout = '/logout',
-}
+const APIRoute = {
+  Films: '/films',
+  Login: '/login',
+  Logout: '/logout',
+  Comments: (id: string): string => `/comments/${id}`,
+};
 
 export {AppRoute, AuthorizationStatus, APIRoute};

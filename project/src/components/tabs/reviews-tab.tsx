@@ -10,12 +10,17 @@ type ReviewsProps = {
 }
 
 function Reviews(props: ReviewsProps): JSX.Element {
-  const { filmId } = props;
-  const [ isLoading ] = useState(true);
-  const [ reviews ] = useState<Review[]>([]);
+  const {filmId} = props;
+  const [isLoading, setIsLoading] = useState(true);
+  const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
-    fetchComments(filmId);
+    fetchComments(filmId)
+      .then((data: any) => {
+        console.log(data);
+        setReviews(data);
+        setIsLoading(false);
+      });
   }, [filmId]);
 
   if (isLoading) {

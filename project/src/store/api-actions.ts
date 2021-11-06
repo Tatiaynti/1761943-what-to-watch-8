@@ -3,13 +3,20 @@ import {dropToken, setToken, Token} from '../services/token';
 import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
 import {FilmFromServerType} from '../types/film';
+import {Review} from '../types/reviews';
 import {loadFilms, requireAuthorization, requireLogout, redirectToRoute} from './action';
+import {api as apiSettled} from '../index';
 
 const fetchFilmAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const {data} = await api.get<FilmFromServerType[]>(APIRoute.Films);
     dispatch(loadFilms(data));
   };
+
+const fetchComments = async (filmId: string): Promise<Review[]> => {
+  const {data} = await apiSettled.get<Review[]>(APIRoute.Comments(filmId));
+  return data;
+};
 
 const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
@@ -34,4 +41,4 @@ const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction};
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments};
