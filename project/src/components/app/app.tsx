@@ -3,8 +3,6 @@ import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
-import MoviePageDetailsScreen from '../movie-page-details/movie-page-details-screen';
-import MoviePageReviewsScreen from '../movie-page-reviews/movie-page-reviews-screen';
 import MoviePageScreen from '../movie-page/movie-page-screen';
 import MyListScreen from '../my-list-screen/my-list-screen';
 import PlayerScreen from '../player-screen/player-screen';
@@ -53,12 +51,6 @@ function App(props: PropsFromRedux): JSX.Element {
         </Route>
         <Route exact path={AppRoute.Film}>
           <MoviePageScreen />
-        </Route>
-        <Route exact path={AppRoute.FilmDetails}>
-          <MoviePageDetailsScreen />
-        </Route>
-        <Route exact path={AppRoute.FilmReviews}>
-          <MoviePageReviewsScreen reviews={[]} />
         </Route>
         <PrivateRoute
           exact

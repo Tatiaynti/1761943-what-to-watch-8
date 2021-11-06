@@ -11,6 +11,7 @@ type Film = {
   director: string;
   starring: string[];
   runtime: number;
+  scoresCount: number,
 };
 
 type FilmFromServerType = {
