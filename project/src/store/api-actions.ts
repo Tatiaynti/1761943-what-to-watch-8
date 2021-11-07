@@ -2,10 +2,11 @@ import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {dropToken, setToken, Token} from '../services/token';
 import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
-import {FilmFromServerType} from '../types/film';
+import {Film, FilmFromServerType} from '../types/film';
 import {Review} from '../types/reviews';
 import {loadFilms, requireAuthorization, requireLogout, redirectToRoute} from './action';
 import {api as apiSettled} from '../index';
+import { adaptToClient } from '../utils/common';
 
 const fetchFilmAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -16,6 +17,11 @@ const fetchFilmAction = (): ThunkActionResult =>
 const fetchComments = async (filmId: string): Promise<Review[]> => {
   const {data} = await apiSettled.get<Review[]>(APIRoute.Comments(filmId));
   return data;
+};
+
+const fetchRelatedFilms = async (filmId: string): Promise<Film[]> => {
+  const {data} = await apiSettled.get<FilmFromServerType[]>(APIRoute.RelatedFilms(filmId));
+  return data.map(adaptToClient);
 };
 
 const checkAuthAction = (): ThunkActionResult =>
@@ -41,4 +47,4 @@ const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments};
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms};

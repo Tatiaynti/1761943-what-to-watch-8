@@ -1,3 +1,5 @@
+const MAX_RELATED_FILMS_COUNT = 4;
+
 enum AppRoute {
   SignIn = '/login',
   AddReview = '/films/:id/review',
@@ -20,6 +22,7 @@ const APIRoute = {
   Login: '/login',
   Logout: '/logout',
   Comments: (id: string): string => `/comments/${id}`,
+  RelatedFilms: (id: string): string => `/films/${id}/similar`,
 };
 
-export {AppRoute, AuthorizationStatus, APIRoute};
+export {AppRoute, AuthorizationStatus, APIRoute, MAX_RELATED_FILMS_COUNT};
