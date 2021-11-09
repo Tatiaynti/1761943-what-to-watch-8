@@ -3,17 +3,33 @@ import {ChangeEvent, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import {UserBlock} from '../user-block/user-block';
-import { useParams } from 'react-router';
-import { getCurrentFilm } from '../../utils/common';
+import {useHistory, useParams} from 'react-router';
+import {getCurrentFilm} from '../../utils/common';
+import {postComments} from '../../store/api-actions';
+import {AppRoute} from '../../const';
 
 function AddReviewScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
   const {id} = useParams<{ id: string }>();
   const currentFilm = getCurrentFilm(films, id);
+  const history = useHistory();
 
-  const [review, setReview] = useState('');
+  const [comment, setReview] = useState('');
   const [rating, setRating] = useState('');
-  const isFormInvalid = Boolean(rating === undefined || review.length < 50);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const isFormInvalid = Boolean(rating === undefined || comment.length < 50);
+
+  const formSubmitHandler = (evt: React.FormEvent) => {
+    evt.preventDefault();
+
+    setSubmitting(true);
+    postComments(currentFilm.id, { comment, rating })
+      .then(() => {
+        setSubmitting(false);
+        history.push(AppRoute.Film.replace(':id', currentFilm.id));
+      });
+
+  };
 
   return (
     <section className="film-card film-card--full">
@@ -48,7 +64,7 @@ function AddReviewScreen(): JSX.Element {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form action="#" className="add-review__form" onSubmit={formSubmitHandler}>
           <div className="rating">
             <div className="rating__stars">
               <input className="rating__input" id="star-10" type="radio" name="rating" value="10"
@@ -105,12 +121,12 @@ function AddReviewScreen(): JSX.Element {
 
           <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
-              value={review}
+              value={comment}
               onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setReview(event.target.value)}
             >
             </textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit" disabled={isFormInvalid}>Post</button>
+              <button className="add-review__btn" type="submit" disabled={isFormInvalid || isSubmitting}>Post</button>
             </div>
 
           </div>

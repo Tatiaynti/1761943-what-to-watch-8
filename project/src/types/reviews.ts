@@ -1,5 +1,5 @@
 type ReviewForm = {
-  rating: number,
+  rating: string,
   comment: string,
 }
 

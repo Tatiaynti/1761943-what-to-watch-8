@@ -59,9 +59,6 @@ const getFilmRatingDescription = (rating: number): string => {
   return 'Unknown';
 };
 
-const formatRating = (rating: number): string =>
-  rating.toFixed(1).replace('.', ',');
-
 const formatDate = (date: Date, format: string): string =>
   dayjs(date).format(format).toString();
 
@@ -81,4 +78,4 @@ const convertMinutesToHours = (period: number): string => {
   return `${hoursOutput} ${minutesOutput}`;
 };
 
-export {adaptToClient, isCheckedAuth, getCurrentFilm, getFilmRatingDescription, formatRating, convertMinutesToHours, formatDate};
+export {adaptToClient, isCheckedAuth, getCurrentFilm, getFilmRatingDescription, convertMinutesToHours, formatDate};

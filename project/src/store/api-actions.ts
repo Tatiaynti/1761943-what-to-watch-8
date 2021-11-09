@@ -4,7 +4,7 @@ import {dropToken, setToken, Token} from '../services/token';
 import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
 import {Film, FilmFromServerType} from '../types/film';
-import {Review} from '../types/reviews';
+import {Review, ReviewForm} from '../types/reviews';
 import {loadFilms, requireAuthorization, requireLogout, redirectToRoute} from './action';
 import {api as apiSettled} from '../index';
 import {adaptToClient} from '../utils/common';
@@ -18,6 +18,10 @@ const fetchFilmAction = (): ThunkActionResult =>
 const fetchComments = async (filmId: string): Promise<Review[]> => {
   const {data} = await apiSettled.get<Review[]>(APIRoute.Comments(filmId));
   return data;
+};
+
+const postComments = async (filmId: string, comment: ReviewForm): Promise<void> => {
+  await apiSettled.post<Review[]>(APIRoute.Comments(filmId), comment);
 };
 
 const fetchRelatedFilms = async (filmId: string): Promise<Film[]> => {
@@ -55,4 +59,4 @@ const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites};
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments};

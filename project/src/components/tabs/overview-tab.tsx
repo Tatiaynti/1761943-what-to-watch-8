@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 import {Film} from '../../types/film';
-import {formatRating, getFilmRatingDescription} from '../../utils/common';
+import {getFilmRatingDescription} from '../../utils/common';
 
 type FilmProps = {
   film: Film,
@@ -12,7 +12,7 @@ function Overview(props: FilmProps): JSX.Element {
   return (
     <Fragment>
       <div className="film-rating">
-        <div className="film-rating__score">{formatRating(rate)}</div>
+        <div className="film-rating__score">{rate}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{getFilmRatingDescription(rate)}</span>
           <span className="film-rating__count">{scoresCount} ratings</span>

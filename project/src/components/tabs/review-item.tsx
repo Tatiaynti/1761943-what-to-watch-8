@@ -1,5 +1,5 @@
 import {Review} from '../../types/reviews';
-import {formatDate, formatRating} from '../../utils/common';
+import {formatDate} from '../../utils/common';
 
 type ReviewProps = {
   review: Review,
@@ -23,7 +23,7 @@ function ReviewItem(props: ReviewProps): JSX.Element {
         </footer>
       </blockquote>
 
-      <div className="review__rating">{formatRating(rating)}</div>
+      <div className="review__rating">{rating}</div>
     </div>
   );
 }
