@@ -8,6 +8,7 @@ import {adaptToClient} from '../utils/common';
 const initialState = {
   genre: GenreList.AllGenres,
   films: [],
+  promoFilm: null,
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
 };
@@ -26,6 +27,9 @@ const reducer = (state: State = initialState, action: Actions): State => {
     }
     case ActionType.RequireLogout: {
       return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
+    }
+    case ActionType.LoadPromoFilm: {
+      return {...state, promoFilm: action.payload.film};
     }
     default: {
       return state;

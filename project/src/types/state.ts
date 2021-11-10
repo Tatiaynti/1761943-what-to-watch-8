@@ -5,6 +5,7 @@ import {GenreList} from './genres';
 type State = {
   genre: GenreList,
   films: Film[],
+  promoFilm: Film | null,
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 };

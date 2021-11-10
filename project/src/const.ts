@@ -20,6 +20,7 @@ const APIRoute = {
   Login: '/login',
   Logout: '/logout',
   Favorite: '/favorite',
+  PromoFilm: '/promo',
   Comments: (id: string): string => `/comments/${id}`,
   RelatedFilms: (id: string): string => `/films/${id}/similar`,
 };

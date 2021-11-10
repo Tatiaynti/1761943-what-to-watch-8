@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {Link} from 'react-router-dom';
 import Logo from '../logo/logo';
 import {generatePath, useParams} from 'react-router';
@@ -18,7 +17,6 @@ function MoviePageScreen(): JSX.Element {
 
   const {id} = useParams<{ id: string }>();
   const currentFilm = getCurrentFilm(films, id);
-  console.log(currentFilm, id);
 
   return (
     <Fragment>

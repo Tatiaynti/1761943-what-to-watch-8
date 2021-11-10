@@ -14,12 +14,6 @@ import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
 import browserHistory from '../../browser-history';
 
-type AppScreenProps = {
-  promoTitle: string;
-  promoGenre: string;
-  promoReleaseYear: number;
-}
-
 const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
   authorizationStatus,
   isDataLoaded,
@@ -27,10 +21,10 @@ const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
 
 const connector = connect(mapStateToProps);
 
-type PropsFromRedux = ConnectedProps<typeof connector> & AppScreenProps;
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props: PropsFromRedux): JSX.Element {
-  const {authorizationStatus, isDataLoaded, promoTitle, promoGenre, promoReleaseYear} = props;
+  const {authorizationStatus, isDataLoaded} = props;
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return <Spinner />;
@@ -40,11 +34,7 @@ function App(props: PropsFromRedux): JSX.Element {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainScreen
-            promoTitle={promoTitle}
-            promoGenre={promoGenre}
-            promoReleaseYear={promoReleaseYear}
-          />
+          <MainScreen />
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <SignInScreen/>

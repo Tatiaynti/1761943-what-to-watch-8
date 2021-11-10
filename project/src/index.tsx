@@ -13,12 +13,6 @@ import {ThunkAppDispatch} from './types/action';
 import {AuthorizationStatus} from './const';
 import {redirect} from './store/middlewares/redirect';
 
-const Settings = {
-  PROMO_TITLE: 'The Grand Budapest',
-  PROMO_GENRE: 'Drama',
-  PROMO_RELEASE_YEAR: 2014,
-} as const;
-
 const api = createAPI(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth)),
 );
@@ -37,11 +31,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <App
-        promoTitle = {Settings.PROMO_TITLE}
-        promoGenre = {Settings.PROMO_GENRE}
-        promoReleaseYear = {Settings.PROMO_RELEASE_YEAR}
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

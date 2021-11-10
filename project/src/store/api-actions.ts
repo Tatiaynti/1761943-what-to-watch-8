@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {dropToken, setToken, Token} from '../services/token';
 import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
 import {Film, FilmFromServerType} from '../types/film';
 import {Review, ReviewForm} from '../types/reviews';
-import {loadFilms, requireAuthorization, requireLogout, redirectToRoute} from './action';
+import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm} from './action';
 import {api as apiSettled} from '../index';
 import {adaptToClient} from '../utils/common';
 
@@ -32,8 +31,13 @@ const fetchRelatedFilms = async (filmId: string): Promise<Film[]> => {
 const fetchFavorites = (): ThunkActionResult<Promise<Film[]>> =>
   async (dispatch, _getState, api): Promise<Film[]> => {
     const {data} = await api.get<FilmFromServerType[]>(APIRoute.Favorite);
-    console.log(data);
     return data.map(adaptToClient);
+  };
+
+const fetchPromoFilm = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const {data} = await api.get<FilmFromServerType>(APIRoute.PromoFilm);
+    dispatch(loadPromoFilm(adaptToClient(data)));
   };
 
 const checkAuthAction = (): ThunkActionResult =>
@@ -59,4 +63,4 @@ const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments};
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments, fetchPromoFilm};
