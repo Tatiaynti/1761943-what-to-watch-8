@@ -78,4 +78,10 @@ const convertMinutesToHours = (period: number): string => {
   return `${hoursOutput} ${minutesOutput}`;
 };
 
-export {adaptToClient, isCheckedAuth, getCurrentFilm, getFilmRatingDescription, convertMinutesToHours, formatDate};
+const convertSecondsToHours = (period: number): string =>
+  dayjs
+    .duration(period, 'seconds')
+    .format('HH:mm:ss')
+    .replace('00:', '');
+
+export {adaptToClient, isCheckedAuth, getCurrentFilm, getFilmRatingDescription, convertMinutesToHours, formatDate, convertSecondsToHours};
