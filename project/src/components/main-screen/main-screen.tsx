@@ -9,7 +9,8 @@ import Spinner from '../spinner/spinner';
 import {UserBlock} from '../user-block/user-block';
 import {ThunkAppDispatch} from '../../types/action';
 import {fetchPromoFilm} from '../../store/api-actions';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import {CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE} from '../../const';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   getPromoFilm() {
@@ -28,11 +29,23 @@ type ConnectedMainProps = ConnectedProps<typeof connector>;
 function MainScreen(props: ConnectedMainProps): JSX.Element {
   const {promoFilm, films, getPromoFilm} =  props;
 
+  const [currentPage, setCurrentPage] = useState(CATALOG_START_PAGE);
+  const renderedFilms = films.slice(0, currentPage * FILMS_COUNT_PER_PAGE);
+  const isMoreButtonVisible = films.length > renderedFilms.length;
+
+  useEffect(() => {
+    setCurrentPage(CATALOG_START_PAGE);
+  }, []);
+
   useEffect(() => {
     if (!promoFilm) {
       getPromoFilm();
     }
   }, [getPromoFilm, promoFilm]);
+
+  const handleMoreButtonClick = () => {
+    setCurrentPage((pageCount) => pageCount + 1);
+  };
 
   return (
     <>
@@ -88,11 +101,12 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresTabs/>
-          {films.length > 0 ? <ListOfFilms films={films} /> : <Spinner />}
-
-          <div className="catalog__more">
+          {films.length > 0 ? <ListOfFilms films={renderedFilms} /> : <Spinner />}
+          {isMoreButtonVisible &&
+          <div className="catalog__more" onClick={handleMoreButtonClick}>
             <button className="catalog__button" type="button">Show more</button>
-          </div>
+          </div>}
+
         </section>
         <Footer/>
       </div>

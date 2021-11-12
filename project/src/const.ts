@@ -1,4 +1,6 @@
 const MAX_RELATED_FILMS_COUNT = 4;
+const CATALOG_START_PAGE = 1;
+const FILMS_COUNT_PER_PAGE = 8;
 
 enum AppRoute {
   SignIn = '/login',
@@ -25,4 +27,4 @@ const APIRoute = {
   RelatedFilms: (id: string): string => `/films/${id}/similar`,
 };
 
-export {AppRoute, AuthorizationStatus, APIRoute, MAX_RELATED_FILMS_COUNT};
+export {AppRoute, AuthorizationStatus, APIRoute, MAX_RELATED_FILMS_COUNT, CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE};
