@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeFavoriteKeyStatus } from '../../store/api-actions';
+import { changeFavoriteStatus } from '../../store/api-actions';
 import { Film } from '../../types/film';
 
 enum FavoriteStatus {
@@ -25,17 +26,23 @@ const inListButton = (
 
 function AddToMyListButton({film}: AddToMyListButtonType): JSX.Element {
   const dispatch = useDispatch();
-
   const {isFavorite, id} = film;
+  const [isActive, setIsActive] = useState(isFavorite);
 
   const changeStatus = () => {
-    const status = isFavorite ? FavoriteStatus.notFavorite : FavoriteStatus.isFavorite;
-    dispatch(changeFavoriteKeyStatus(id, status));
+    const status = isActive ? FavoriteStatus.notFavorite : FavoriteStatus.isFavorite;
+    dispatch(changeFavoriteStatus(id, status));
+    if (!isActive) {
+      setIsActive(true);
+    }
+    else {
+      setIsActive(false);
+    }
   };
 
   return (
     <button className="btn btn--list film-card__button" type="button" onClick={changeStatus}>
-      {isFavorite ? inListButton : notInListButton}
+      {isActive ? inListButton : notInListButton}
       <span>My list</span>
     </button>
   );

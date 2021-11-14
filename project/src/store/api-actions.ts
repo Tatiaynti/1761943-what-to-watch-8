@@ -63,10 +63,10 @@ const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-const changeFavoriteKeyStatus = (id: number, status: number): ThunkActionResult =>
+const changeFavoriteStatus = (id: number, status: number): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     const {data} = await api.post<FilmFromServerType>(APIRoute.FavoriteStatus(id, status));
     dispatch(updateFilm(adaptToClient(data)));
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments, fetchPromoFilm, changeFavoriteKeyStatus};
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments, fetchPromoFilm, changeFavoriteStatus};
