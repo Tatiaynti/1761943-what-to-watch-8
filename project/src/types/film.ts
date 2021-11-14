@@ -12,6 +12,7 @@ type Film = {
   starring: string[];
   runtime: number;
   scoresCount: number,
+  isFavorite: boolean,
 };
 
 type FilmFromServerType = {

@@ -32,4 +32,9 @@ const redirectToRoute = (url: AppRoute) => ({
   payload: url,
 } as const);
 
-export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm};
+const updateFilm = (film: Film) => ({
+  type: ActionType.UpdateFilm,
+  payload: {film},
+} as const);
+
+export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm};

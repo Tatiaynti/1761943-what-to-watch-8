@@ -9,6 +9,7 @@ const initialState = {
   genre: GenreList.AllGenres,
   films: [],
   promoFilm: null,
+  currentFilm: null,
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
 };
@@ -30,6 +31,9 @@ const reducer = (state: State = initialState, action: Actions): State => {
     }
     case ActionType.LoadPromoFilm: {
       return {...state, promoFilm: action.payload.film};
+    }
+    case ActionType.UpdateFilm: {
+      return {...state, currentFilm: action.payload.film};
     }
     default: {
       return state;

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {useEffect, useState } from 'react';
 import {fetchComments} from '../../store/api-actions';
 import {Review} from '../../types/reviews';
@@ -17,7 +16,6 @@ function Reviews(props: ReviewsProps): JSX.Element {
   useEffect(() => {
     fetchComments(filmId)
       .then((data: any) => {
-        console.log(data);
         setReviews(data);
         setIsLoading(false);
       });

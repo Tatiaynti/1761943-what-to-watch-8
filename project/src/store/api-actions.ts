@@ -4,7 +4,7 @@ import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
 import {Film, FilmFromServerType} from '../types/film';
 import {Review, ReviewForm} from '../types/reviews';
-import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm} from './action';
+import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm} from './action';
 import {api as apiSettled} from '../index';
 import {adaptToClient} from '../utils/common';
 
@@ -63,4 +63,10 @@ const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments, fetchPromoFilm};
+const changeFavoriteKeyStatus = (id: number, status: number): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    const {data} = await api.post<FilmFromServerType>(APIRoute.FavoriteStatus(id, status));
+    dispatch(updateFilm(adaptToClient(data)));
+  };
+
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments, fetchPromoFilm, changeFavoriteKeyStatus};

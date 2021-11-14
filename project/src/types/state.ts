@@ -6,6 +6,7 @@ type State = {
   genre: GenreList,
   films: Film[],
   promoFilm: Film | null,
+  currentFilm: Film | null,
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 };

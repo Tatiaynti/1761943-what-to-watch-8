@@ -25,6 +25,7 @@ const APIRoute = {
   PromoFilm: '/promo',
   Comments: (id: string): string => `/comments/${id}`,
   RelatedFilms: (id: string): string => `/films/${id}/similar`,
+  FavoriteStatus: (id: string | number, status: number): string => `/favorite/${id}/${status}`,
 };
 
 export {AppRoute, AuthorizationStatus, APIRoute, MAX_RELATED_FILMS_COUNT, CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE};

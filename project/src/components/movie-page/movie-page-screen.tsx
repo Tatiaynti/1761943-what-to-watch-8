@@ -10,6 +10,7 @@ import {Fragment} from 'react';
 import FilmTabs from '../tabs/tabs';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import RelatedFilms from '../related-list/related-list';
+import AddToMyListButton from '../my-list-button/my-list-button';
 
 function MoviePageScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
@@ -52,14 +53,7 @@ function MoviePageScreen(): JSX.Element {
                 </Link>
                 {
                   auth === AuthorizationStatus.Auth &&
-                <Link to={AppRoute.MyList}>
-                  <button className="btn btn--list film-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"/>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                </Link>
+                <AddToMyListButton film = {currentFilm} />
                 }
                 { auth === AuthorizationStatus.Auth && <Link to={generatePath(AppRoute.AddReview, {id: currentFilm.id})} className="btn film-card__button">Add review</Link>}
               </div>
