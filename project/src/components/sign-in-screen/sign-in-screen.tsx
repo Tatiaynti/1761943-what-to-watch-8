@@ -4,6 +4,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import {loginAction} from '../../store/api-actions';
 import {ThunkAppDispatch} from '../../types/action';
 import {AuthData} from '../../types/auth-data';
+import Footer from '../footer/footer';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onSubmit(authData: AuthData) {
@@ -59,16 +60,7 @@ function SignInScreen(props: PropsFromRedux): JSX.Element {
           </div>
         </form>
       </div>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Logo />
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import Logo from '../logo/logo';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useCallback, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import UserBlock from '../user-block/user-block';
@@ -18,6 +18,8 @@ function AddReviewScreen(): JSX.Element {
   const [rating, setRating] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const isFormInvalid = Boolean(rating === undefined || comment.length < 50);
+
+  const handleRatingChange = useCallback((event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value), []);
 
   const formSubmitHandler = (evt: React.FormEvent) => {
     evt.preventDefault();
@@ -68,52 +70,52 @@ function AddReviewScreen(): JSX.Element {
           <div className="rating">
             <div className="rating__stars">
               <input className="rating__input" id="star-10" type="radio" name="rating" value="10"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-10">Rating 10</label>
 
               <input className="rating__input" id="star-9" type="radio" name="rating" value="9"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-9">Rating 9</label>
 
               <input className="rating__input" id="star-8" type="radio" name="rating" value="8"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-8">Rating 8</label>
 
               <input className="rating__input" id="star-7" type="radio" name="rating" value="7"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-7">Rating 7</label>
 
               <input className="rating__input" id="star-6" type="radio" name="rating" value="6"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-6">Rating 6</label>
 
               <input className="rating__input" id="star-5" type="radio" name="rating" value="5"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-5">Rating 5</label>
 
               <input className="rating__input" id="star-4" type="radio" name="rating" value="4"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
               <input className="rating__input" id="star-3" type="radio" name="rating" value="3"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
               <input className="rating__input" id="star-2" type="radio" name="rating" value="2"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
               <input className="rating__input" id="star-1" type="radio" name="rating" value="1"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}
+                onChange={handleRatingChange}
               />
               <label className="rating__label" htmlFor="star-1">Rating 1</label>
             </div>
@@ -137,4 +139,3 @@ function AddReviewScreen(): JSX.Element {
 }
 
 export default AddReviewScreen;
-
