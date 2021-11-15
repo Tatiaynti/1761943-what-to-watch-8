@@ -1,4 +1,4 @@
-import {Fragment} from 'react';
+import {Fragment, memo} from 'react';
 import {Film} from '../../types/film';
 import {convertMinutesToHours} from '../../utils/common';
 
@@ -42,4 +42,4 @@ function Details(props: FilmProps):JSX.Element {
   );
 }
 
-export default Details;
+export default memo(Details, (prevProps, nextProps) => prevProps.film === nextProps.film);

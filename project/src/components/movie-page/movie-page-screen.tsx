@@ -3,7 +3,7 @@ import Logo from '../logo/logo';
 import {generatePath, useParams} from 'react-router';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
-import {UserBlock} from '../user-block/user-block';
+import UserBlock from '../user-block/user-block';
 import {getCurrentFilm} from '../../utils/common';
 import Footer from '../footer/footer';
 import {Fragment} from 'react';

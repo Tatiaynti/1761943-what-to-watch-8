@@ -6,7 +6,7 @@ import {State} from '../../types/state';
 import {getFilteredFilms} from '../../selectors/selectors';
 import GenresTabs from '../genres-tabs/genres-tabs';
 import Spinner from '../spinner/spinner';
-import {UserBlock} from '../user-block/user-block';
+import UserBlock from '../user-block/user-block';
 import {ThunkAppDispatch} from '../../types/action';
 import {fetchPromoFilm} from '../../store/api-actions';
 import {useEffect, useState} from 'react';

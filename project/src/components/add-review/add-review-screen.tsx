@@ -2,7 +2,7 @@ import Logo from '../logo/logo';
 import {ChangeEvent, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
-import {UserBlock} from '../user-block/user-block';
+import UserBlock from '../user-block/user-block';
 import {useHistory, useParams} from 'react-router';
 import {getCurrentFilm} from '../../utils/common';
 import {postComments} from '../../store/api-actions';

@@ -1,4 +1,4 @@
-import React from 'react';
+import {memo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AuthorizationStatus} from '../../const';
 import {logoutAction} from '../../store/api-actions';
@@ -38,4 +38,4 @@ function UserBlock(): JSX.Element {
     </ul>);
 }
 
-export {UserBlock};
+export default memo(UserBlock);
