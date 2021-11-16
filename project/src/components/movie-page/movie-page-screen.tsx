@@ -13,8 +13,8 @@ import RelatedFilms from '../related-list/related-list';
 import AddToMyListButton from '../my-list-button/my-list-button';
 
 function MoviePageScreen(): JSX.Element {
-  const films = useSelector((state: State) => state.films);
-  const auth = useSelector((state: State) => state.authorizationStatus);
+  const films = useSelector(({DATA}: State) => DATA.films);
+  const auth = useSelector(({USER}: State) => USER.authorizationStatus);
 
   const {id} = useParams<{ id: string }>();
   const currentFilm = getCurrentFilm(films, id);

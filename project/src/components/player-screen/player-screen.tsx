@@ -7,7 +7,7 @@ import {convertSecondsToHours, getCurrentFilm} from '../../utils/common';
 import Spinner from '../spinner/spinner';
 
 function PlayerScreen(): JSX.Element {
-  const films = useSelector((state: State) => state.films);
+  const films = useSelector(({DATA}: State) => DATA.films);
   const {id} = useParams<{ id: string }>();
   const history = useHistory();
 

@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 function UserBlock(): JSX.Element {
-  const auth = useSelector((state: State) => state.authorizationStatus);
+  const auth = useSelector(({USER}: State) => USER.authorizationStatus);
 
   const dispatch = useDispatch();
   const handlerLogoutClick = (evt: React.MouseEvent) => {

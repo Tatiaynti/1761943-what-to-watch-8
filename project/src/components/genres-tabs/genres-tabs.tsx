@@ -18,8 +18,8 @@ const genreTypeToReadable = {
   [GenreList.Thrillers]: 'Thrillers',
 };
 
-const mapStateToProps = (state: State) => ({
-  activeGenre: state.genre,
+const mapStateToProps = ({DATA}: State) => ({
+  activeGenre: DATA.genre,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

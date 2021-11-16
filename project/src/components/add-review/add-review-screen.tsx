@@ -10,7 +10,7 @@ import {useAddReviewStates} from '../../hooks/use-add-review-state';
 import {useState} from 'react';
 
 function AddReviewScreen(): JSX.Element {
-  const films = useSelector((state: State) => state.films);
+  const films = useSelector(({DATA}: State) => DATA.films);
   const {id} = useParams<{ id: string }>();
   const currentFilm = getCurrentFilm(films, id);
   const history = useHistory();

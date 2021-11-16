@@ -14,9 +14,9 @@ import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
 import browserHistory from '../../browser-history';
 
-const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
-  authorizationStatus,
-  isDataLoaded,
+const mapStateToProps = ({USER, DATA}: State) => ({
+  authorizationStatus: USER.authorizationStatus,
+  isDataLoaded: DATA.isDataLoaded,
 });
 
 const connector = connect(mapStateToProps);

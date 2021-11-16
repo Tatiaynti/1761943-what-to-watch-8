@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
 
 const mapStateToProps = (state: State) => ({
   films: getFilteredFilms(state),
-  promoFilm: state.promoFilm,
+  promoFilm: state.DATA.promoFilm,
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
