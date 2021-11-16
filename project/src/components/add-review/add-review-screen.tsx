@@ -1,5 +1,4 @@
 import Logo from '../logo/logo';
-import {ChangeEvent, useCallback, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import UserBlock from '../user-block/user-block';
@@ -7,6 +6,8 @@ import {useHistory, useParams} from 'react-router';
 import {getCurrentFilm} from '../../utils/common';
 import {postComments} from '../../store/api-actions';
 import {AppRoute} from '../../const';
+import {useAddReviewStates} from '../../hooks/use-add-review-state';
+import {useState} from 'react';
 
 function AddReviewScreen(): JSX.Element {
   const films = useSelector((state: State) => state.films);
@@ -14,18 +15,15 @@ function AddReviewScreen(): JSX.Element {
   const currentFilm = getCurrentFilm(films, id);
   const history = useHistory();
 
-  const [comment, setReview] = useState('');
-  const [rating, setRating] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
-  const isFormInvalid = Boolean(rating === undefined || comment.length < 50);
 
-  const handleRatingChange = useCallback((event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value), []);
+  const [handleRatingChange, handleSetReview, isFormInvalid, comment, rating] = useAddReviewStates();
 
   const formSubmitHandler = (evt: React.FormEvent) => {
     evt.preventDefault();
 
     setSubmitting(true);
-    postComments(currentFilm.id, { comment, rating })
+    postComments(currentFilm.id, {comment, rating})
       .then(() => {
         setSubmitting(false);
         history.push(AppRoute.Film.replace(':id', currentFilm.id));
@@ -124,7 +122,7 @@ function AddReviewScreen(): JSX.Element {
           <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
               value={comment}
-              onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setReview(event.target.value)}
+              onChange={handleSetReview}
             >
             </textarea>
             <div className="add-review__submit">
