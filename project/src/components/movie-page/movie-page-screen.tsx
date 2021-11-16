@@ -11,10 +11,12 @@ import FilmTabs from '../tabs/tabs';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import RelatedFilms from '../related-list/related-list';
 import AddToMyListButton from '../my-list-button/my-list-button';
+import {getFilms} from '../../selectors/film-data-selectors';
+import {getAuthorizationStatus} from '../../selectors/user-process-selectors';
 
 function MoviePageScreen(): JSX.Element {
-  const films = useSelector(({DATA}: State) => DATA.films);
-  const auth = useSelector(({USER}: State) => USER.authorizationStatus);
+  const films = useSelector((state: State) => getFilms(state));
+  const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
   const {id} = useParams<{ id: string }>();
   const currentFilm = getCurrentFilm(films, id);

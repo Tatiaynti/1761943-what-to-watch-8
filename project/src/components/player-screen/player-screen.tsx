@@ -2,12 +2,13 @@ import {SyntheticEvent, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {generatePath, useHistory, useParams} from 'react-router';
 import {AppRoute} from '../../const';
+import { getFilms } from '../../selectors/film-data-selectors';
 import {State} from '../../types/state';
 import {convertSecondsToHours, getCurrentFilm} from '../../utils/common';
 import Spinner from '../spinner/spinner';
 
 function PlayerScreen(): JSX.Element {
-  const films = useSelector(({DATA}: State) => DATA.films);
+  const films = useSelector((state: State) => getFilms(state));
   const {id} = useParams<{ id: string }>();
   const history = useHistory();
 

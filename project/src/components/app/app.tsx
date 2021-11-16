@@ -13,10 +13,12 @@ import {State} from '../../types/state';
 import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
 import browserHistory from '../../browser-history';
+import {getAuthorizationStatus} from '../../selectors/user-process-selectors';
+import {getDataLoadingStatus} from '../../selectors/film-data-selectors';
 
-const mapStateToProps = ({USER, DATA}: State) => ({
-  authorizationStatus: USER.authorizationStatus,
-  isDataLoaded: DATA.isDataLoaded,
+const mapStateToProps = (state: State) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  isDataLoaded: getDataLoadingStatus(state),
 });
 
 const connector = connect(mapStateToProps);

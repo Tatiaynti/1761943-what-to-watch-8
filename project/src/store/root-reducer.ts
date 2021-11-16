@@ -12,5 +12,5 @@ const rootReducer = combineReducers({
   [NameSpace.user]: userProcess,
 });
 
-export {rootReducer};
+export {NameSpace, rootReducer};
 export type RootState = ReturnType<typeof rootReducer>;

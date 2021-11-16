@@ -8,9 +8,10 @@ import {postComments} from '../../store/api-actions';
 import {AppRoute} from '../../const';
 import {useAddReviewStates} from '../../hooks/use-add-review-state';
 import {useState} from 'react';
+import { getFilms } from '../../selectors/film-data-selectors';
 
 function AddReviewScreen(): JSX.Element {
-  const films = useSelector(({DATA}: State) => DATA.films);
+  const films = useSelector((state: State) => getFilms(state));
   const {id} = useParams<{ id: string }>();
   const currentFilm = getCurrentFilm(films, id);
   const history = useHistory();

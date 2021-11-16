@@ -5,9 +5,10 @@ import {logoutAction} from '../../store/api-actions';
 import {State} from '../../types/state';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import { getAuthorizationStatus } from '../../selectors/user-process-selectors';
 
 function UserBlock(): JSX.Element {
-  const auth = useSelector(({USER}: State) => USER.authorizationStatus);
+  const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
   const dispatch = useDispatch();
   const handlerLogoutClick = (evt: React.MouseEvent) => {

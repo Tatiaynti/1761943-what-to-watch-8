@@ -1,7 +1,7 @@
 import Footer from '../footer/footer';
 import ListOfFilms from '../list-of-films/list-of-films';
 import Logo from '../logo/logo';
-import {connect, ConnectedProps} from 'react-redux';
+import {connect, ConnectedProps, useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import {getFilteredFilms} from '../../selectors/selectors';
 import GenresTabs from '../genres-tabs/genres-tabs';
@@ -10,24 +10,28 @@ import UserBlock from '../user-block/user-block';
 import {ThunkAppDispatch} from '../../types/action';
 import {fetchPromoFilm} from '../../store/api-actions';
 import {useEffect, useState} from 'react';
-import {CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE} from '../../const';
+import {AuthorizationStatus, CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE} from '../../const';
+import { getPromoFilm } from '../../selectors/film-data-selectors';
+import AddToMyListButton from '../my-list-button/my-list-button';
+import { getAuthorizationStatus } from '../../selectors/user-process-selectors';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  getPromoFilm() {
+  uploadPromoFilm() {
     return dispatch(fetchPromoFilm());
   },
 });
 
 const mapStateToProps = (state: State) => ({
   films: getFilteredFilms(state),
-  promoFilm: state.DATA.promoFilm,
+  promoFilm: getPromoFilm(state),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type ConnectedMainProps = ConnectedProps<typeof connector>;
 
 function MainScreen(props: ConnectedMainProps): JSX.Element {
-  const {promoFilm, films, getPromoFilm} =  props;
+  const {promoFilm, films, uploadPromoFilm} =  props;
+  const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
   const [currentPage, setCurrentPage] = useState(CATALOG_START_PAGE);
   const renderedFilms = films.slice(0, currentPage * FILMS_COUNT_PER_PAGE);
@@ -39,7 +43,7 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
 
   useEffect(() => {
     if (!promoFilm) {
-      getPromoFilm();
+      uploadPromoFilm();
     }
   }, [getPromoFilm, promoFilm]);
 
@@ -84,12 +88,10 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {
+                  auth === AuthorizationStatus.Auth &&
+                <AddToMyListButton film = {promoFilm} />
+                }
               </div>
             </div>
           </div>
