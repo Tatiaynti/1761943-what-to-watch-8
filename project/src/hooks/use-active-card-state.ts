@@ -1,6 +1,8 @@
 import {useState} from 'react';
 
-const useActiveFilmCard = (): any => {
+type ActivityCardType = (id: string) => void;
+
+const useActiveFilmCard = (): [ActivityCardType] => {
   const [, setFilmCardActive] = useState<string>();
   function toggleActiveCardById(id: string) {
     setFilmCardActive(id);

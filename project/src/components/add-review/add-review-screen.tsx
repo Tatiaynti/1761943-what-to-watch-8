@@ -2,13 +2,13 @@ import Logo from '../logo/logo';
 import {useSelector} from 'react-redux';
 import {State} from '../../types/state';
 import UserBlock from '../user-block/user-block';
-import {useHistory, useParams} from 'react-router';
+import {generatePath, useHistory, useParams} from 'react-router';
 import {getCurrentFilm} from '../../utils/common';
 import {postComments} from '../../store/api-actions';
 import {AppRoute} from '../../const';
 import {useAddReviewStates} from '../../hooks/use-add-review-state';
 import {useState} from 'react';
-import { getFilms } from '../../selectors/film-data-selectors';
+import {getFilms} from '../../selectors/film-data-selectors';
 
 function AddReviewScreen(): JSX.Element {
   const films = useSelector((state: State) => getFilms(state));
@@ -16,20 +16,19 @@ function AddReviewScreen(): JSX.Element {
   const currentFilm = getCurrentFilm(films, id);
   const history = useHistory();
 
-  const [isSubmitting, setSubmitting] = useState(false);
+  const [isSubmitting, setSubmitting] = useState<boolean>(false);
 
   const [handleRatingChange, handleSetReview, isFormInvalid, comment, rating] = useAddReviewStates();
 
-  const formSubmitHandler = (evt: React.FormEvent) => {
+  const handleFormSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
 
     setSubmitting(true);
     postComments(currentFilm.id, {comment, rating})
       .then(() => {
         setSubmitting(false);
-        history.push(AppRoute.Film.replace(':id', currentFilm.id));
+        history.push(generatePath(AppRoute.Film, {id: currentFilm.id}));
       });
-
   };
 
   return (
@@ -65,7 +64,7 @@ function AddReviewScreen(): JSX.Element {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form" onSubmit={formSubmitHandler}>
+        <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
           <div className="rating">
             <div className="rating__stars">
               <input className="rating__input" id="star-10" type="radio" name="rating" value="10"

@@ -11,7 +11,7 @@ function UserBlock(): JSX.Element {
   const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
   const dispatch = useDispatch();
-  const handlerLogoutClick = (evt: React.MouseEvent) => {
+  const handleLogoutClick = (evt: React.MouseEvent) => {
     evt.preventDefault();
     dispatch(logoutAction());
   };
@@ -28,7 +28,7 @@ function UserBlock(): JSX.Element {
               </Link>
             </li>
             <li className="user-block__item">
-              <span className="user-block__link" onClick={handlerLogoutClick}>Sign out</span>
+              <span className="user-block__link" onClick={handleLogoutClick}>Sign out</span>
             </li>
           </>
         )  : (

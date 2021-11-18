@@ -8,7 +8,7 @@ import {fetchFavorites} from '../../store/api-actions';
 import {ThunkAppDispatch} from '../../types/action';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  getFavoriteFilms() {
+  onFavoriteFilmsLoad() {
     return dispatch(fetchFavorites());
   },
 });
@@ -18,7 +18,7 @@ const connector = connect(null, mapDispatchToProps);
 type MyListProps = ConnectedProps<typeof connector>
 
 function MyListScreen(props: MyListProps): JSX.Element {
-  const {getFavoriteFilms} = props;
+  const {onFavoriteFilmsLoad: getFavoriteFilms} = props;
   const [myList, setMyList] = useState<Film[]>([]);
 
   useEffect(() => {

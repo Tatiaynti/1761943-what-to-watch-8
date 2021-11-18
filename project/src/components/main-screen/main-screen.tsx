@@ -11,12 +11,12 @@ import {ThunkAppDispatch} from '../../types/action';
 import {fetchPromoFilm} from '../../store/api-actions';
 import {useEffect, useState} from 'react';
 import {AuthorizationStatus, CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE} from '../../const';
-import { getPromoFilm } from '../../selectors/film-data-selectors';
+import {getPromoFilm} from '../../selectors/film-data-selectors';
 import AddToMyListButton from '../my-list-button/my-list-button';
-import { getAuthorizationStatus } from '../../selectors/user-process-selectors';
+import {getAuthorizationStatus} from '../../selectors/user-process-selectors';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  uploadPromoFilm() {
+  onPromoFilmUpload() {
     return dispatch(fetchPromoFilm());
   },
 });
@@ -30,10 +30,10 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type ConnectedMainProps = ConnectedProps<typeof connector>;
 
 function MainScreen(props: ConnectedMainProps): JSX.Element {
-  const {promoFilm, films, uploadPromoFilm} =  props;
+  const {promoFilm, films, onPromoFilmUpload: uploadPromoFilm} =  props;
   const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
-  const [currentPage, setCurrentPage] = useState(CATALOG_START_PAGE);
+  const [currentPage, setCurrentPage] = useState<number>(CATALOG_START_PAGE);
   const renderedFilms = films.slice(0, currentPage * FILMS_COUNT_PER_PAGE);
   const isMoreButtonVisible = films.length > renderedFilms.length;
 
@@ -45,7 +45,7 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
     if (!promoFilm) {
       uploadPromoFilm();
     }
-  }, [getPromoFilm, promoFilm]);
+  }, [promoFilm, uploadPromoFilm]);
 
   const handleMoreButtonClick = () => {
     setCurrentPage((pageCount) => pageCount + 1);

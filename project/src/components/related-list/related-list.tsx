@@ -13,7 +13,7 @@ function RelatedFilms(props: RelatedFilmsProps): JSX.Element {
   const {filmId} = props;
 
   const [films, setFilms] = useState<Film[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchRelatedFilms(filmId)

@@ -11,7 +11,7 @@ type FilmData = {
   genre: GenreList,
   films: Film[],
   promoFilm: Film | null,
-  currentFilm: Film | null,
+  currentFilm: Film,
   isDataLoaded: boolean,
 };
 

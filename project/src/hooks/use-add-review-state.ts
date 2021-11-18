@@ -1,8 +1,11 @@
 import {ChangeEvent, useCallback, useState} from 'react';
 
-const useAddReviewStates = (): any => {
-  const [comment, setReview] = useState('');
-  const [rating, setRating] = useState('');
+type RatingType = (event: ChangeEvent<HTMLInputElement>) => void;
+type ReviewType = (event: ChangeEvent<HTMLTextAreaElement>) => void;
+
+const useAddReviewStates = (): [RatingType, ReviewType, boolean, string, string] => {
+  const [comment, setReview] = useState<string>('');
+  const [rating, setRating] = useState<string>('');
 
   const isFormInvalid = Boolean(rating === undefined || comment.length < 50);
 

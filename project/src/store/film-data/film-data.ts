@@ -1,5 +1,5 @@
 import {Actions, ActionType} from '../../types/action';
-import {FilmFromServerType} from '../../types/film';
+import {Film, FilmFromServerType} from '../../types/film';
 import {GenreList} from '../../types/genres';
 import {FilmData} from '../../types/state';
 import {adaptToClient} from '../../utils/common';
@@ -8,7 +8,7 @@ const initialState: FilmData = {
   genre: GenreList.AllGenres,
   films: [],
   promoFilm: null,
-  currentFilm: null,
+  currentFilm: {} as Film,
   isDataLoaded: true,
 };
 

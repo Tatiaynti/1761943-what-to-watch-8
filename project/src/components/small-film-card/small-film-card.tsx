@@ -18,7 +18,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
   const [isPlay, setIsPlay] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
 
-  function makeFilmCardActive() {
+  function handleFilmCardActive() {
     onMouseEnter(film.id.toString());
     setIsHover(true);
   }
@@ -44,7 +44,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
 
   return (
     <article className="small-film-card catalog__films-card" id={`film-${film.id}`}
-      onMouseEnter={() => makeFilmCardActive()}
+      onMouseEnter={() => handleFilmCardActive()}
       onMouseLeave={() => setIsHover(false)}
     >
       <div className="small-film-card__image">
