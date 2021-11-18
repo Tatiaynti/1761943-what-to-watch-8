@@ -2,34 +2,40 @@ import ListOfFilms from '../list-of-films/list-of-films';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import {connect, ConnectedProps} from 'react-redux';
-import {useEffect, useState} from 'react';
-import {Film} from '../../types/film';
-import {fetchFavorites} from '../../store/api-actions';
+import {useEffect} from 'react';
 import {ThunkAppDispatch} from '../../types/action';
+import {State} from '../../types/state';
+import {fetchFavorites} from '../../store/api-actions';
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  onFavoriteFilmsLoad() {
-    return dispatch(fetchFavorites());
-  },
-});
+function mapStateToProps({DATA}: State) {
+  return {
+    favoriteFilms: DATA.favoriteFilms,
+  };
+}
 
-const connector = connect(null, mapDispatchToProps);
+function mapDispatchToProps(dispatch: ThunkAppDispatch) {
+  return {
+    onFavoriteListLoad() {
+      dispatch(fetchFavorites());
+    },
+  };
+}
 
-type MyListProps = ConnectedProps<typeof connector>
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type MyListProps = ConnectedProps<typeof connector>;
 
 function MyListScreen(props: MyListProps): JSX.Element {
-  const {onFavoriteFilmsLoad: getFavoriteFilms} = props;
-  const [myList, setMyList] = useState<Film[]>([]);
+  const {onFavoriteListLoad, favoriteFilms} = props;
 
-  useEffect(() => {
-    getFavoriteFilms()
-      .then((films: any) => setMyList(films));
-  }, [getFavoriteFilms]);
+  useEffect(()=> {
+    onFavoriteListLoad();
+  }, [onFavoriteListLoad]);
 
   return (
     <div className="user-page">
       <Header />
-      <ListOfFilms films={myList} />
+      <ListOfFilms films={favoriteFilms} />
       <Footer/>
     </div>
   );

@@ -4,7 +4,7 @@ import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
 import {Film, FilmFromServerType} from '../types/film';
 import {Review, ReviewForm} from '../types/reviews';
-import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm} from './action';
+import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList} from './action';
 import {api as apiSettled} from '../index';
 import {adaptToClient} from '../utils/common';
 
@@ -28,10 +28,11 @@ const fetchRelatedFilms = async (filmId: string): Promise<Film[]> => {
   return data.map(adaptToClient);
 };
 
-const fetchFavorites = (): ThunkActionResult<Promise<Film[]>> =>
-  async (dispatch, _getState, api): Promise<Film[]> => {
+const fetchFavorites = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
     const {data} = await api.get<FilmFromServerType[]>(APIRoute.Favorite);
-    return data.map(adaptToClient);
+    const adaptedFilms = data.map((film) => adaptToClient(film));
+    dispatch(setFavoritesList(adaptedFilms));
   };
 
 const fetchPromoFilm = (): ThunkActionResult =>
@@ -69,4 +70,4 @@ const changeFavoriteStatus = (id: number, status: number): ThunkActionResult =>
     dispatch(updateFilm(adaptToClient(data)));
   };
 
-export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, fetchFavorites, postComments, fetchPromoFilm, changeFavoriteStatus};
+export {fetchFilmAction, checkAuthAction, loginAction, logoutAction, fetchComments, fetchRelatedFilms, postComments, fetchPromoFilm, changeFavoriteStatus, fetchFavorites};

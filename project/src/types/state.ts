@@ -13,6 +13,7 @@ type FilmData = {
   promoFilm: Film | null,
   currentFilm: Film,
   isDataLoaded: boolean,
+  favoriteFilms: Film[],
 };
 
 export type {UserProcess, FilmData};

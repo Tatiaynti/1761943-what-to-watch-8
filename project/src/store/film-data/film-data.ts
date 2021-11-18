@@ -10,6 +10,7 @@ const initialState: FilmData = {
   promoFilm: null,
   currentFilm: {} as Film,
   isDataLoaded: true,
+  favoriteFilms: [],
 };
 
 const filmData = (state = initialState, action: Actions): FilmData => {
@@ -26,6 +27,9 @@ const filmData = (state = initialState, action: Actions): FilmData => {
     }
     case ActionType.UpdateFilm: {
       return {...state, currentFilm: action.payload.film};
+    }
+    case ActionType.LoadFavoritesList: {
+      return {...state, favoriteFilms: action.payload as Film[]};
     }
     default: {
       return state;
