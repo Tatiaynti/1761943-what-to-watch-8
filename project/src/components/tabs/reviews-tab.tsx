@@ -1,25 +1,41 @@
 import {useEffect, useState } from 'react';
+import {connect, ConnectedProps} from 'react-redux';
 import {fetchComments} from '../../store/api-actions';
-import {Review} from '../../types/reviews';
+import {ThunkAppDispatch} from '../../types/action';
+import {State} from '../../types/state';
 import Spinner from '../spinner/spinner';
 import ReviewItem from './review-item';
 
-type ReviewsProps = {
+type ReviewsProp = {
   filmId: string,
 }
 
+function mapStateToProps({DATA}: State) {
+  return {
+    comments: DATA.comments,
+  };
+}
+
+function mapDispatchToProps(dispatch: ThunkAppDispatch) {
+  return {
+    onCommentsLoading(filmId: string) {
+      dispatch(fetchComments(filmId));
+    },
+  };
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReviewsProps = ConnectedProps<typeof connector> & ReviewsProp;
+
 function Reviews(props: ReviewsProps): JSX.Element {
-  const {filmId} = props;
+  const {onCommentsLoading, filmId, comments} = props;
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
-    fetchComments(filmId)
-      .then((data: any) => {
-        setReviews(data);
-        setIsLoading(false);
-      });
-  }, [filmId]);
+    onCommentsLoading(filmId);
+    setIsLoading(false);
+  },[onCommentsLoading, filmId]);
 
   if (isLoading) {
     return (
@@ -29,8 +45,8 @@ function Reviews(props: ReviewsProps): JSX.Element {
     );
   }
 
-  const reviewElements = reviews
-    .map((review) => <ReviewItem key={review.date.toLocaleString()} review={review}/>);
+  const reviewElements = comments
+    .map((comment) => <ReviewItem key={comment.date.toLocaleString()} review={comment}/>);
   const countOfItemsInColumn = Math.ceil(reviewElements.length / 2);
 
   return (
@@ -45,4 +61,5 @@ function Reviews(props: ReviewsProps): JSX.Element {
   );
 }
 
-export default Reviews;
+export {Reviews};
+export default connector(Reviews);

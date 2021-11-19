@@ -2,6 +2,7 @@ import {AppRoute, AuthorizationStatus} from '../const';
 import {ActionType} from '../types/action';
 import {Film, FilmFromServerType} from '../types/film';
 import {GenreList} from '../types/genres';
+import {Review} from '../types/reviews';
 
 const setGenre = (genre: GenreList) => ({
   type: ActionType.ChangeGenre,
@@ -47,5 +48,9 @@ const loadSimilarFilms = (films: Film[]) => ({
   payload: films,
 } as const);
 
+const loadComments = (comments: Review[]) => ({
+  type: ActionType.LoadComments,
+  payload: comments,
+} as const);
 
-export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms};
+export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms, loadComments};

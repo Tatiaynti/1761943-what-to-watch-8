@@ -4,7 +4,7 @@ import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
 import {FilmFromServerType} from '../types/film';
 import {Review, ReviewForm} from '../types/reviews';
-import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms} from './action';
+import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms, loadComments} from './action';
 import {api as apiSettled} from '../index';
 import {adaptToClient} from '../utils/common';
 
@@ -14,10 +14,11 @@ const fetchFilmAction = (): ThunkActionResult =>
     dispatch(loadFilms(data));
   };
 
-const fetchComments = async (filmId: string): Promise<Review[]> => {
-  const {data} = await apiSettled.get<Review[]>(APIRoute.Comments(filmId));
-  return data;
-};
+const fetchComments = (id: string): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const {data} = await api.get<Review[]>(APIRoute.Comments(id));
+    dispatch(loadComments(data));
+  };
 
 const postComments = async (filmId: string, comment: ReviewForm): Promise<void> => {
   await apiSettled.post<Review[]>(APIRoute.Comments(filmId), comment);

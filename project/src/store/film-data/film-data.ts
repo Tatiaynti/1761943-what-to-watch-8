@@ -1,6 +1,7 @@
 import {Actions, ActionType} from '../../types/action';
 import {Film, FilmFromServerType} from '../../types/film';
 import {GenreList} from '../../types/genres';
+import {Review} from '../../types/reviews';
 import {FilmData} from '../../types/state';
 import {adaptToClient} from '../../utils/common';
 
@@ -12,6 +13,7 @@ const initialState: FilmData = {
   isDataLoaded: true,
   favoriteFilms: [],
   similarFilms: [],
+  comments: [],
 };
 
 const filmData = (state = initialState, action: Actions): FilmData => {
@@ -35,6 +37,8 @@ const filmData = (state = initialState, action: Actions): FilmData => {
     case ActionType.LoadSimilarFilms: {
       return {...state, similarFilms: action.payload as Film[]};
     }
+    case ActionType.LoadComments:
+      return {...state, comments: action.payload as Review[]};
     default: {
       return state;
     }
