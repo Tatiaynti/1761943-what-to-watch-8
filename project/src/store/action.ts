@@ -42,5 +42,10 @@ const setFavoritesList = (films: Film[])  => ({
   payload: films,
 } as const);
 
+const loadSimilarFilms = (films: Film[]) => ({
+  type: ActionType.LoadSimilarFilms,
+  payload: films,
+} as const);
 
-export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList};
+
+export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms};

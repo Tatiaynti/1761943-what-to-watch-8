@@ -11,6 +11,7 @@ const initialState: FilmData = {
   currentFilm: {} as Film,
   isDataLoaded: true,
   favoriteFilms: [],
+  similarFilms: [],
 };
 
 const filmData = (state = initialState, action: Actions): FilmData => {
@@ -30,6 +31,9 @@ const filmData = (state = initialState, action: Actions): FilmData => {
     }
     case ActionType.LoadFavoritesList: {
       return {...state, favoriteFilms: action.payload as Film[]};
+    }
+    case ActionType.LoadSimilarFilms: {
+      return {...state, similarFilms: action.payload as Film[]};
     }
     default: {
       return state;

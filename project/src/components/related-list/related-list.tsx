@@ -1,37 +1,55 @@
 import {useEffect, useState} from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import {MAX_RELATED_FILMS_COUNT} from '../../const';
 import {fetchRelatedFilms} from '../../store/api-actions';
-import {Film} from '../../types/film';
+import { ThunkAppDispatch } from '../../types/action';
+import { State } from '../../types/state';
 import ListOfFilms from '../list-of-films/list-of-films';
 import Spinner from '../spinner/spinner';
 
-type RelatedFilmsProps = {
+type RelatedFilmsProp = {
   filmId: string,
 }
 
-function RelatedFilms(props: RelatedFilmsProps): JSX.Element {
-  const {filmId} = props;
+function mapStateToProps({DATA}: State) {
+  return {
+    films: DATA.films,
+    similarFilms: DATA.similarFilms,
+  };
+}
 
-  const [films, setFilms] = useState<Film[]>([]);
+function mapDispatchToProps(dispatch: ThunkAppDispatch) {
+  return {
+    onSimilarFilmsLoad(filmId: string) {
+      dispatch(fetchRelatedFilms(filmId));
+    },
+  };
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type RelatedFilmsProps = ConnectedProps<typeof connector> & RelatedFilmsProp;
+
+function RelatedFilms(props: RelatedFilmsProps): JSX.Element {
+  const {onSimilarFilmsLoad, similarFilms, filmId} = props;
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchRelatedFilms(filmId)
-      .then((data: any) => {
-        setFilms(data);
-        setIsLoading(false);
-      });
-  }, [filmId]);
+    onSimilarFilmsLoad(filmId);
+    setIsLoading(false);
+  },[onSimilarFilmsLoad, filmId]);
 
   return (
     <section className="catalog catalog--like-this">
       <h2 className="catalog__title">More like this</h2>
       {
         isLoading ? <Spinner/>
-          : <ListOfFilms films={films.slice(0, MAX_RELATED_FILMS_COUNT)}/>
+          : <ListOfFilms films={similarFilms.slice(0, MAX_RELATED_FILMS_COUNT)}/>
       }
     </section>
   );
 }
 
-export default RelatedFilms;
+export {RelatedFilms};
+export default connector(RelatedFilms);

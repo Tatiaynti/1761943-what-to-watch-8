@@ -14,6 +14,7 @@ type FilmData = {
   currentFilm: Film,
   isDataLoaded: boolean,
   favoriteFilms: Film[],
+  similarFilms: Film[],
 };
 
 export type {UserProcess, FilmData};

@@ -2,9 +2,9 @@ import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {dropToken, setToken, Token} from '../services/token';
 import {ThunkActionResult} from '../types/action';
 import {AuthData} from '../types/auth-data';
-import {Film, FilmFromServerType} from '../types/film';
+import {FilmFromServerType} from '../types/film';
 import {Review, ReviewForm} from '../types/reviews';
-import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList} from './action';
+import {loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms} from './action';
 import {api as apiSettled} from '../index';
 import {adaptToClient} from '../utils/common';
 
@@ -23,10 +23,12 @@ const postComments = async (filmId: string, comment: ReviewForm): Promise<void> 
   await apiSettled.post<Review[]>(APIRoute.Comments(filmId), comment);
 };
 
-const fetchRelatedFilms = async (filmId: string): Promise<Film[]> => {
-  const {data} = await apiSettled.get<FilmFromServerType[]>(APIRoute.RelatedFilms(filmId));
-  return data.map(adaptToClient);
-};
+const fetchRelatedFilms = (filmId: string): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const {data} = await api.get<FilmFromServerType[]>(APIRoute.RelatedFilms(filmId));
+    const adaptedFilms = data.map((film) => adaptToClient(film));
+    dispatch(loadSimilarFilms(adaptedFilms));
+  };
 
 const fetchFavorites = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
