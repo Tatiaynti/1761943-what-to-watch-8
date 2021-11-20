@@ -1,7 +1,8 @@
 import {AppRoute, AuthorizationStatus} from '../const';
 import {ActionType} from '../types/action';
-import {FilmFromServerType} from '../types/film';
+import {Film, FilmFromServerType} from '../types/film';
 import {GenreList} from '../types/genres';
+import {Review} from '../types/reviews';
 
 const setGenre = (genre: GenreList) => ({
   type: ActionType.ChangeGenre,
@@ -11,6 +12,11 @@ const setGenre = (genre: GenreList) => ({
 const loadFilms = (films: FilmFromServerType[]) => ({
   type: ActionType.LoadFilms,
   payload: {films},
+} as const);
+
+const loadPromoFilm = (film: Film) => ({
+  type: ActionType.LoadPromoFilm,
+  payload: {film},
 } as const);
 
 const requireAuthorization = (authStatus: AuthorizationStatus) => ({
@@ -27,4 +33,24 @@ const redirectToRoute = (url: AppRoute) => ({
   payload: url,
 } as const);
 
-export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute};
+const updateFilm = (film: Film) => ({
+  type: ActionType.UpdateFilm,
+  payload: {film},
+} as const);
+
+const setFavoritesList = (films: Film[])  => ({
+  type: ActionType.LoadFavoritesList,
+  payload: films,
+} as const);
+
+const loadSimilarFilms = (films: Film[]) => ({
+  type: ActionType.LoadSimilarFilms,
+  payload: films,
+} as const);
+
+const loadComments = (comments: Review[]) => ({
+  type: ActionType.LoadComments,
+  payload: comments,
+} as const);
+
+export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms, loadComments};

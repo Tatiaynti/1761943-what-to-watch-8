@@ -1,9 +1,17 @@
-type Review = {
-  id: string;
-  rate: number;
-  text: string;
-  userName: string;
-  date: string;
-};
+type ReviewForm = {
+  rating: string,
+  comment: string,
+}
 
-export type {Review};
+type Review = ReviewForm & {
+  id: string,
+  user: User,
+  date: Date,
+}
+
+type User = {
+  id: string,
+  name: string,
+}
+
+export type {ReviewForm, Review, User};

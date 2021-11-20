@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import Logo from '../logo/logo';
 
 function Footer(): JSX.Element {
@@ -8,10 +9,10 @@ function Footer(): JSX.Element {
       </div>
 
       <div className="copyright">
-        <p>© 2019 What to watch Ltd.</p>
+        <p>© 2021 What to watch Ltd.</p>
       </div>
     </footer>
   );
 }
 
-export default Footer;
+export default memo(Footer);

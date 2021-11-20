@@ -3,6 +3,7 @@ import {AppRoute} from '../../const';
 import VideoPlayer from '../video-player/video-player';
 import {useEffect, useRef, useState} from 'react';
 import {generatePath} from 'react-router';
+import { Link } from 'react-router-dom';
 
 const TIMER_DELAY = 1000;
 
@@ -17,7 +18,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
   const [isPlay, setIsPlay] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
 
-  function makeFilmCardActive() {
+  function handleFilmCardActive() {
     onMouseEnter(film.id.toString());
     setIsHover(true);
   }
@@ -43,7 +44,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
 
   return (
     <article className="small-film-card catalog__films-card" id={`film-${film.id}`}
-      onMouseEnter={() => makeFilmCardActive()}
+      onMouseEnter={() => handleFilmCardActive()}
       onMouseLeave={() => setIsHover(false)}
     >
       <div className="small-film-card__image">
@@ -56,7 +57,7 @@ function FilmCardScreen(props: FilmCardProps): JSX.Element {
         }
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href={generatePath(AppRoute.Film, {id: film.id})}>{film.title}</a>
+        <Link className="small-film-card__link" to={generatePath(AppRoute.Film, {id: film.id})}>{film.title}</Link>
       </h3>
     </article>
   );

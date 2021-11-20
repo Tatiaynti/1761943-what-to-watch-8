@@ -3,8 +3,6 @@ import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
-import MoviePageDetailsScreen from '../movie-page-details/movie-page-details-screen';
-import MoviePageReviewsScreen from '../movie-page-reviews/movie-page-reviews-screen';
 import MoviePageScreen from '../movie-page/movie-page-screen';
 import MyListScreen from '../my-list-screen/my-list-screen';
 import PlayerScreen from '../player-screen/player-screen';
@@ -15,24 +13,20 @@ import {State} from '../../types/state';
 import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
 import browserHistory from '../../browser-history';
+import {getAuthorizationStatus} from '../../selectors/user-process-selectors';
+import {getDataLoadingStatus} from '../../selectors/film-data-selectors';
 
-type AppScreenProps = {
-  promoTitle: string;
-  promoGenre: string;
-  promoReleaseYear: number;
-}
-
-const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
-  authorizationStatus,
-  isDataLoaded,
+const mapStateToProps = (state: State) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  isDataLoaded: getDataLoadingStatus(state),
 });
 
 const connector = connect(mapStateToProps);
 
-type PropsFromRedux = ConnectedProps<typeof connector> & AppScreenProps;
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props: PropsFromRedux): JSX.Element {
-  const {authorizationStatus, isDataLoaded, promoTitle, promoGenre, promoReleaseYear} = props;
+  const {authorizationStatus, isDataLoaded} = props;
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return <Spinner />;
@@ -42,23 +36,13 @@ function App(props: PropsFromRedux): JSX.Element {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainScreen
-            promoTitle={promoTitle}
-            promoGenre={promoGenre}
-            promoReleaseYear={promoReleaseYear}
-          />
+          <MainScreen />
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <SignInScreen/>
         </Route>
         <Route exact path={AppRoute.Film}>
           <MoviePageScreen />
-        </Route>
-        <Route exact path={AppRoute.FilmDetails}>
-          <MoviePageDetailsScreen />
-        </Route>
-        <Route exact path={AppRoute.FilmReviews}>
-          <MoviePageReviewsScreen reviews={[]} />
         </Route>
         <PrivateRoute
           exact

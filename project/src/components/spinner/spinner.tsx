@@ -1,7 +1,9 @@
+import {memo} from 'react';
+
 function Spinner(): JSX.Element {
   return (
     <p>Loading...</p>
   );
 }
 
-export default Spinner;
+export default memo(Spinner);

@@ -1,16 +1,13 @@
 import FilmCardScreen from '../small-film-card/small-film-card';
-import {useState} from 'react';
 import {Film} from '../../types/film';
+import {useActiveFilmCard} from '../../hooks/use-active-card-state';
 
 type ListOfFilmProps = {
   films: Film[];
 }
 
 function ListOfFilms({films}:ListOfFilmProps): JSX.Element {
-  const [, setFilmCardActive] = useState<string>();
-  function toggleActiveCardById(id: string) {
-    setFilmCardActive(id);
-  }
+  const [toggleActiveCardById] = useActiveFilmCard();
 
   return (
     <section className="catalog">

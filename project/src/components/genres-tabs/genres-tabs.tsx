@@ -1,5 +1,6 @@
 import {connect, ConnectedProps} from 'react-redux';
 import {Dispatch} from 'redux';
+import { getGenre } from '../../selectors/film-data-selectors';
 import {setGenre} from '../../store/action';
 import {Actions} from '../../types/action';
 import {GenreList} from '../../types/genres';
@@ -19,7 +20,7 @@ const genreTypeToReadable = {
 };
 
 const mapStateToProps = (state: State) => ({
-  activeGenre: state.genre,
+  activeGenre: getGenre(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

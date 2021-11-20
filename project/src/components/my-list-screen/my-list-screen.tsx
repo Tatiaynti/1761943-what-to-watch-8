@@ -1,19 +1,45 @@
 import ListOfFilms from '../list-of-films/list-of-films';
 import Footer from '../footer/footer';
 import Header from '../header/header';
-import {useSelector} from 'react-redux';
+import {connect, ConnectedProps} from 'react-redux';
+import {useEffect} from 'react';
+import {ThunkAppDispatch} from '../../types/action';
 import {State} from '../../types/state';
+import {fetchFavorites} from '../../store/api-actions';
 
-function MyListScreen(): JSX.Element {
-  const films = useSelector((state: State) => state.films);
+function mapStateToProps({DATA}: State) {
+  return {
+    favoriteFilms: DATA.favoriteFilms,
+  };
+}
+
+function mapDispatchToProps(dispatch: ThunkAppDispatch) {
+  return {
+    onFavoriteListLoad() {
+      dispatch(fetchFavorites());
+    },
+  };
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type MyListProps = ConnectedProps<typeof connector>;
+
+function MyListScreen(props: MyListProps): JSX.Element {
+  const {onFavoriteListLoad, favoriteFilms} = props;
+
+  useEffect(()=> {
+    onFavoriteListLoad();
+  }, [onFavoriteListLoad]);
 
   return (
     <div className="user-page">
       <Header />
-      <ListOfFilms films={films} />
+      <ListOfFilms films={favoriteFilms} />
       <Footer/>
     </div>
   );
 }
 
-export default MyListScreen;
+export {MyListScreen};
+export default connector(MyListScreen);
