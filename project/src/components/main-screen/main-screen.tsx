@@ -30,7 +30,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type ConnectedMainProps = ConnectedProps<typeof connector>;
 
 function MainScreen(props: ConnectedMainProps): JSX.Element {
-  const {promoFilm, films, onPromoFilmUpload: uploadPromoFilm} =  props;
+  const {promoFilm, films, onPromoFilmUpload} =  props;
   const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
   const [currentPage, setCurrentPage] = useState<number>(CATALOG_START_PAGE);
@@ -43,9 +43,9 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
 
   useEffect(() => {
     if (!promoFilm) {
-      uploadPromoFilm();
+      onPromoFilmUpload();
     }
-  }, [promoFilm, uploadPromoFilm]);
+  }, [promoFilm, onPromoFilmUpload]);
 
   const handleMoreButtonClick = () => {
     setCurrentPage((pageCount) => pageCount + 1);
@@ -90,7 +90,7 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
                 </button>
                 {
                   auth === AuthorizationStatus.Auth &&
-                <AddToMyListButton film = {promoFilm} />
+                <AddToMyListButton film = {promoFilm}/>
                 }
               </div>
             </div>
