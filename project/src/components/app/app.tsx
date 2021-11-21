@@ -5,7 +5,7 @@ import AddReviewScreen from '../add-review/add-review-screen';
 import MainScreen from '../main-screen/main-screen';
 import MoviePageScreen from '../movie-page/movie-page-screen';
 import MyListScreen from '../my-list-screen/my-list-screen';
-import PlayerScreen from '../player-screen/player-screen';
+import PlayerScreen from '../player/player-screen';
 import SignInScreen from '../sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
 import PageNotFound from '../page-not-found-screen/page-not-found-screen';
