@@ -4,9 +4,9 @@ type ActivityCardType = (id: string) => void;
 
 const useActiveFilmCard = (): [ActivityCardType] => {
   const [, setFilmCardActive] = useState<string>();
-  function toggleActiveCardById(id: string) {
+  const toggleActiveCardById = (id: string) => {
     setFilmCardActive(id);
-  }
+  };
   return [toggleActiveCardById];
 };
 

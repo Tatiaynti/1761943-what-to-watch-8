@@ -14,6 +14,7 @@ import {AuthorizationStatus, CATALOG_START_PAGE, FILMS_COUNT_PER_PAGE} from '../
 import {getPromoFilm} from '../../selectors/film-data-selectors';
 import AddToMyListButton from '../my-list-button/my-list-button';
 import {getAuthorizationStatus} from '../../selectors/user-process-selectors';
+import PlayButton from '../player/play-button';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onPromoFilmUpload() {
@@ -30,7 +31,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type ConnectedMainProps = ConnectedProps<typeof connector>;
 
 function MainScreen(props: ConnectedMainProps): JSX.Element {
-  const {promoFilm, films, onPromoFilmUpload: uploadPromoFilm} =  props;
+  const {promoFilm, films, onPromoFilmUpload} =  props;
   const auth = useSelector((state: State) => getAuthorizationStatus(state));
 
   const [currentPage, setCurrentPage] = useState<number>(CATALOG_START_PAGE);
@@ -43,9 +44,9 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
 
   useEffect(() => {
     if (!promoFilm) {
-      uploadPromoFilm();
+      onPromoFilmUpload();
     }
-  }, [promoFilm, uploadPromoFilm]);
+  }, [promoFilm, onPromoFilmUpload]);
 
   const handleMoreButtonClick = () => {
     setCurrentPage((pageCount) => pageCount + 1);
@@ -82,15 +83,10 @@ function MainScreen(props: ConnectedMainProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <PlayButton film = {promoFilm}/>
                 {
                   auth === AuthorizationStatus.Auth &&
-                <AddToMyListButton film = {promoFilm} />
+                <AddToMyListButton film = {promoFilm}/>
                 }
               </div>
             </div>

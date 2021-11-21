@@ -9,7 +9,7 @@ const initialState: FilmData = {
   genre: GenreList.AllGenres,
   films: [],
   promoFilm: null,
-  currentFilm: {} as Film,
+  currentFilm: null,
   isDataLoaded: true,
   favoriteFilms: [],
   similarFilms: [],

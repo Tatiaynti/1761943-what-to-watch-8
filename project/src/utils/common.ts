@@ -33,7 +33,7 @@ const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
 const getCurrentFilm = (filmsArray: Film[], id: string): any =>
-  filmsArray.find((filmItem) => filmItem.id === Number(id)) || ({} as Film);
+  filmsArray.find((filmItem) => filmItem.id === Number(id)) ?? null;
 
 const getFilmRatingDescription = (rating: number): string => {
   if (rating >= 0 && rating < 3) {
