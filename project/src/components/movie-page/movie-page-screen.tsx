@@ -13,6 +13,7 @@ import RelatedFilms from '../related-list/related-list';
 import AddToMyListButton from '../my-list-button/my-list-button';
 import {getFilms} from '../../selectors/film-data-selectors';
 import {getAuthorizationStatus} from '../../selectors/user-process-selectors';
+import PlayButton from '../player/play-button';
 
 function MoviePageScreen(): JSX.Element {
   const films = useSelector((state: State) => getFilms(state));
@@ -45,14 +46,7 @@ function MoviePageScreen(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <Link to={generatePath(AppRoute.Player, {id: currentFilm.id})} style={{textDecoration: 'none'}}>
-                  <button className="btn btn--play film-card__button" type="button">
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"/>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                </Link>
+                <PlayButton film = {currentFilm}/>
                 {
                   auth === AuthorizationStatus.Auth &&
                 <AddToMyListButton film = {currentFilm} />

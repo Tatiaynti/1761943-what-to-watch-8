@@ -1,6 +1,6 @@
 import {Film} from '../../types/film';
 import {AppRoute} from '../../const';
-import VideoPlayer from '../video-player/video-player';
+import VideoPlayer from '../player/small-video-player';
 import {useEffect, useRef, useState} from 'react';
 import {generatePath} from 'react-router';
 import { Link } from 'react-router-dom';
