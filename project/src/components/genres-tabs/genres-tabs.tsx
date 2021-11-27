@@ -2,7 +2,6 @@ import {connect, ConnectedProps} from 'react-redux';
 import {Dispatch} from 'redux';
 import { getGenre } from '../../selectors/film-data-selectors';
 import {setGenre} from '../../store/action';
-import {Actions} from '../../types/action';
 import {GenreList} from '../../types/genres';
 import {State} from '../../types/state';
 
@@ -23,7 +22,7 @@ const mapStateToProps = (state: State) => ({
   activeGenre: getGenre(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onGenreClick(genre: GenreList) {
     dispatch(setGenre(genre));
   },

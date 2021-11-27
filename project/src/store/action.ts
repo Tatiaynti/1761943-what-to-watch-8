@@ -1,56 +1,73 @@
+import { createAction } from '@reduxjs/toolkit';
 import {AppRoute, AuthorizationStatus} from '../const';
 import {ActionType} from '../types/action';
 import {Film, FilmFromServerType} from '../types/film';
 import {GenreList} from '../types/genres';
 import {Review} from '../types/reviews';
 
-const setGenre = (genre: GenreList) => ({
-  type: ActionType.ChangeGenre,
-  payload: {genre},
-} as const);
+const setGenre = createAction(
+  ActionType.ChangeGenre,
+  (genre: GenreList) => ({
+    payload: {genre},
+  }),
+);
 
-const loadFilms = (films: FilmFromServerType[]) => ({
-  type: ActionType.LoadFilms,
-  payload: {films},
-} as const);
+const loadFilms = createAction(
+  ActionType.LoadFilms,
+  (films: FilmFromServerType[]) => ({
+    payload: {films},
+  }),
+);
 
-const loadPromoFilm = (film: Film) => ({
-  type: ActionType.LoadPromoFilm,
-  payload: {film},
-} as const);
+const loadPromoFilm = createAction(
+  ActionType.LoadPromoFilm,
+  (film: Film) => ({
+    payload: {film},
+  }),
+);
 
-const requireAuthorization = (authStatus: AuthorizationStatus) => ({
-  type: ActionType.RequireAuthorization,
-  payload: authStatus,
-} as const);
+const requireAuthorization = createAction(
+  ActionType.RequireAuthorization,
+  (authStatus: AuthorizationStatus) => ({
+    payload: authStatus,
+  }),
+);
 
-const requireLogout = () => ({
-  type: ActionType.RequireLogout,
-} as const);
+const requireLogout = createAction(ActionType.RequireLogout);
 
-const redirectToRoute = (url: AppRoute) => ({
-  type: ActionType.RedirectToRoute,
-  payload: url,
-} as const);
+const redirectToRoute = createAction(
+  ActionType.RedirectToRoute,
+  (url: AppRoute) => ({
+    payload: url,
+  }),
+);
 
-const updateFilm = (film: Film) => ({
-  type: ActionType.UpdateFilm,
-  payload: {film},
-} as const);
+const updateFilm = createAction(
+  ActionType.UpdateFilm,
+  (film: Film) => ({
+    payload: {film},
+  }),
+);
 
-const setFavoritesList = (films: Film[])  => ({
-  type: ActionType.LoadFavoritesList,
-  payload: films,
-} as const);
+const setFavoritesList = createAction(
+  ActionType.LoadFavoritesList,
+  (films: Film[]) => ({
+    payload: films,
+  }),
+);
 
-const loadSimilarFilms = (films: Film[]) => ({
-  type: ActionType.LoadSimilarFilms,
-  payload: films,
-} as const);
+const loadSimilarFilms = createAction(
+  ActionType.LoadSimilarFilms,
+  (films: Film[]) => ({
+    payload: films,
+  }),
+);
 
-const loadComments = (comments: Review[]) => ({
-  type: ActionType.LoadComments,
-  payload: comments,
-} as const);
+const loadComments = createAction(
+  ActionType.LoadComments,
+  (comments: Review[]) => ({
+    payload: comments,
+  }),
+);
 
 export {setGenre, loadFilms, requireAuthorization, requireLogout, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms, loadComments};
