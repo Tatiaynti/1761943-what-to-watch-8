@@ -1,7 +1,7 @@
-import {loadFilms, requireAuthorization, requireLogout, setGenre, redirectToRoute, loadPromoFilm, updateFilm, setFavoritesList, loadSimilarFilms, loadComments} from '../store/action';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {AxiosInstance} from 'axios';
 import {State} from './state';
+import {Action} from 'redux';
 
 enum ActionType {
   ChangeGenre = 'data/changeGenre',
@@ -16,21 +16,9 @@ enum ActionType {
   LoadComments = 'data/loadComments'
 }
 
-type Actions =
-  | ReturnType<typeof setGenre>
-  | ReturnType<typeof loadFilms>
-  | ReturnType<typeof requireAuthorization>
-  | ReturnType<typeof requireLogout>
-  | ReturnType<typeof redirectToRoute>
-  | ReturnType<typeof loadPromoFilm>
-  | ReturnType<typeof updateFilm>
-  | ReturnType<typeof setFavoritesList>
-  | ReturnType<typeof loadSimilarFilms>
-  | ReturnType<typeof loadComments>;
+type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Action>;
 
-type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
+type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Action>;
 
-type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;
-
-export type {ThunkActionResult, ThunkAppDispatch, Actions};
+export type {ThunkActionResult, ThunkAppDispatch};
 export {ActionType};
